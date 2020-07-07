@@ -1,0 +1,386 @@
+﻿/*=============================================================
+    Authour URI: www.binarytheme.com
+    License: Commons Attribution 3.0
+
+    http://creativecommons.org/licenses/by/3.0/
+
+    100% To use For Personal And Commercial Use.
+    IN EXCHANGE JUST GIVE US CREDITS AND TELL YOUR FRIENDS ABOUT US
+
+    ========================================================  */
+
+/* =============================================================
+   GENERAL STYLES
+ ============================================================ */
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: rgba(28, 43, 75, 1);
+    color: white;
+    padding: 5px;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #DDD;
+    -webkit-transition: all .3s ease-in;
+         -o-transition: all .3s ease-in;
+            transition: all .3s ease-in;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: rgba(20, 16, 45, 17) 2px solid;
+    -webkit-transition: all .3s ease-in;
+         -o-transition: all .3s ease-in;
+            transition: all .3s ease-in;
+}
+.border-bottom {
+margin-bottom: 5%;}
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: rgba(20, 16, 45, 17);
+    color: #fff;
+    -webkit-transition: all .3s ease-in;
+         -o-transition: all .3s ease-in;
+            transition: all .3s ease-in;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn:hover {background-color: rgba(20, 16, 45, 17));
+    -webkit-transition: all .3s ease-in;
+         -o-transition: all .3s ease-in;
+            transition: all .3s ease-in;}
+
+.lnk {
+    background-color: rgba(28, 43, 75, 1);
+    color: #fff;
+    padding: 3%;
+    margin: 5px;
+    text-align: center;
+    text-shadow: 1px 1px 0 #247;
+    width: 100% inherit;
+    border-left: rgba(28, 43, 75, 1) 5px solid;
+
+}
+a.lnk:hover {
+    text-decoration: none;
+    display: inline-grid;
+    background-color: rgba(20, 16, 45, 17)  !important;
+    color: #fff;
+    -webkit-transition: all .3s ease-in;
+         -o-transition: all .3s ease-in;
+            transition: all .3s ease-in;}
+ul ul {
+	visibility: hidden;
+	transition: all 0s;
+}
+
+li:hover ul {
+	visibility: visible;
+	transition-delay: 1s;
+}
+
+.set-pad {
+    padding-top:35px;
+}
+.set-row-pad {
+    padding-top:30px;
+    padding-bottom:50px;
+}
+/*=====================================
+  NAVBAR STYLES
+    ===================================*/
+
+.logo-custom {
+    max-height: 40px;
+}
+
+#menu {
+    background-color: rgba(28, 43, 75, 1);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    min-height: 70px;
+}
+
+
+.navbar-inverse {
+    border-color: transparent;
+}
+
+    .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-nav > li > a:hover {
+        color: #FFF;
+        padding: 22px 10px;
+    }
+
+
+/*=====================================
+  HOME STYLES
+    ===================================*/
+.home-sec {
+    padding-top: 10px;
+    padding-bottom: 60px;
+    background: url(../img/header.jpg) no-repeat center center;
+    padding: 0;
+    -webkit-background-size: cover;
+    background-size: cover;
+    color: #fff;
+    background-attachment: fixed;
+}
+
+    .home-sec .overlay {
+        background: rgba(38, 57, 88, 0.89);
+        min-height: 500px;
+    }
+
+    .home-sec h1 {
+        color: #fff;
+        font-weight: 900;
+        font-size: 50px;
+        text-transform: uppercase;
+        padding-bottom: 35px;
+    }
+
+    .home-sec h3 {
+        text-transform: uppercase;
+    }
+
+
+
+.set-flexi {
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0);
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0);
+    -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0);
+    background-color: transparent;
+    border: 0px solid #000;
+    padding-top: 120px;
+}
+
+.flex-control-nav {
+    display: none!important;
+}
+
+.set-flexi a {
+    margin: 5px;
+}
+/*=====================================
+  TAG LINE STYLES
+    ===================================*/
+
+.tag-line {
+    background: #E9E9E9;
+    color: #000;
+}
+
+    .tag-line h2 {
+        font-size: 20px;
+        font-weight: 900;
+        padding: 5px 10px 10px 5px;
+        color: #005E5A;
+    }
+
+        .tag-line h2 > i {
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+/*=====================================
+  HEADER LINE STYLES
+    ===================================*/
+.header-line {
+    font-weight: 900;
+    font-size: 25px;
+    padding-bottom: 5px;
+    padding-top: 25px;
+    color: #000;
+}
+
+h1::after {
+    content: " ";
+    border: solid 2px #2f9484;
+    display: block;
+    width: 200px;
+    margin: 12px auto;
+}
+
+/*=====================================
+  ABOUT STYLES
+  ===================================*/
+.about-div {
+    padding: 30px;
+}
+
+.icon-round-border {
+    border: 10px double #1A94C4;
+    color: #2f9484;
+    text-align: center;
+    padding-top: 15px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+
+    .icon-round-border:hover {
+        color: #fff;
+        border: 10px double #fff;
+        background-color: #1A94C4;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
+    }
+
+.about-div hr {
+    border: 1px solid #1A94C4;
+}
+
+.about-div h3 {
+    font-size: 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.about-div p {
+    padding-top: 10px;
+}
+
+.edit {
+margin-left:5px;
+margin-right:5px;
+width:32% !important;
+display:inline;
+padding:5px;
+}
+.uppercase {
+  text-transform: uppercase;
+  width: 50%;
+}
+.bod {
+border-left: 5px solid #000 !important;
+
+background:;
+color: ;
+padding:3px;
+text-align:center;
+}
+.btn-set {
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    margin-bottom: 20px;
+}
+/*=====================================
+  FACULTY STYLES
+  ===================================*/
+#faculty-sec {
+    margin-top: 1%;
+    background-color: #ddd;
+    border-radius: ;
+    border: 1px solid;
+    padding: 3px;
+    width: 100%;
+    color: rgba(20,15,65,1);
+}
+
+.red {
+    color: red;
+    font-weight: bold;
+}
+    #faculty-sec .header-line {
+        color: #fff;
+    }
+.faculty-div h4 {
+    line-height:30px;
+    font-weight:700;
+}
+.faculty-div {
+    border: 1px solid rgba(15,13,65,1);
+    border-radius: 5px;
+    margin: 5px;
+    padding: 30px;
+}
+
+    .faculty-div hr {
+        border: 1px solid #1A94C4;
+    }
+
+    .faculty-div h3 {
+        font-size: 25px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .faculty-div p {
+        padding-top: 10px;
+        padding-bottom: 15px;
+    }
+
+    .faculty-div img {
+        border: 10px double #fff;
+    }
+
+/*=====================================
+  CONTACT STYLES
+  ===================================*/
+#contact-sec {
+    padding-top: 10px;
+    padding-bottom: 60px;
+
+    padding: 0;
+    -webkit-background-size: cover;
+    background-size: cover;
+    color: #fff;
+    background-attachment: fixed;
+}
+
+#contact-sec .overlay {
+        background: rgba(0, 0, 0, 0.76);
+        min-height: 600px;
+    }
+
+    #contact-sec h1 {
+        color:#fff;
+    }
+#contact-sec .form-control{
+    background-color:rgba(255, 255, 255, 0);
+    color:#fff;
+}
+/*=====================================
+  Footer STYLES
+  ===================================*/
+#footer {
+    margin-top: 20px;
+    padding:5px 20px;
+    background-color:#2d3d5a;
+    text-align:right;
+    color:#fff;
+    font-size:14px;
+}
+#margin {
+    margin-bottom: 15px;
+}
