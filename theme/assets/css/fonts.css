@@ -1,0 +1,64 @@
+
+@font-face {
+  font-family: Bungee;
+  font-weight: bold;
+  src: url('../fonts/bungee/Bungee-Regular.otf');
+}
+@font-face {
+  font-family: CaviarDreams;
+  src: url('../fonts/caviar/CaviarDreams.ttf');
+}
+@font-face {
+  font-family: CaviarDreams Bold;
+  src: url('../fonts/caviar/Caviar_Dreams_Bold.ttf');
+}
+@font-face {
+font-family: Open Sans;
+src: url(../fonts/opensans-regular.ttf);
+}
+
+@font-face {
+font-family: Open Sans-Bold;
+src: url('../fonts/OpenSans-Bold.ttf');
+}
+@font-face {
+font-family: Open Sans-Italic;
+src: url('../fonts/OpenSans-Italic.ttf');
+}
+@font-face {
+font-family: Ubuntu-Regular;
+src: url('../fonts/ubuntu/Ubuntu-Regular.ttf');
+}
+
+@font-face {
+font-family: Ubuntu-Bold;
+src: url('../fonts/ubuntu/Ubuntu-Bold.ttf');
+}
+@font-face {
+  font-family: Arcon;
+  src: url('../fonts/arcon/Arcon-Regular.otf');
+}
+@font-face {
+  font-family: Baloo;
+  src: url('../fonts/Baloo-Regular.ttf');
+}
+@font-face {
+  font-family: Cunia;
+  src: url('../fonts/cunia.ttf');
+}
+@font-face {
+  font-family: Montserrat;
+  src: url('../fonts/montserrat/Montserrat-Regular.otf');
+}
+@font-face {
+  font-family: Montserrat SemiBold;
+  src: url('../fonts/montserrat/Montserrat-SemiBold.otf');
+}
+@font-face {
+  font-family: Montserrat Black;
+  src: url('../fonts/montserrat/Montserrat-Black.otf');
+}
+@font-face {
+  font-family: Comfortaa;
+  src: url('../fonts/comfortaa/Comfortaa_Regular.ttf');
+}

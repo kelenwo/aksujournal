@@ -2261,9 +2261,9 @@ input[type="button"].btn-block {
   min-height: 100%;
   width: 100%;
   background: rgba(18, 33, 55, 1);
-  font-family: 'Open Sans';
+  font-family: 'Ubuntu-Regular';
   font-size: 18px;
-  text-align: center;
+  text-align: justify;
 }
 .list-group-item:first-child{border-top:none}
 .list-group-item-heading,a.list-group-item{color:#eee;}
@@ -2280,7 +2280,7 @@ a.list-group-item:focus,a.list-group-item:hover{
   font-size: 16px;
 }
 a.list-group-item:hover > i {
-  font-size: 18px;
+  font-size: 19px;
   -webkit-transition: all .2s linear;
        -o-transition: all .2s linear;
           transition: all .2s linear;
@@ -3162,4 +3162,22 @@ margin: 5px;
   -webkit-transform: translateY(-1%);
   -ms-transform: translateY(-1%);
   transform: translateY(-1%);
+}
+
+.custom-tbl th {
+  background-color: #ddd;
+  color: #000;
+  font-weight: bold;
+  font-size: 15px;
+  border-right:1px #fff solid;
+}
+
+.custom-tbl {
+  font-size: 15px;
+}
+.actions {
+  font-size: 13px;
+}
+.actions i{
+  font-size: 15px;
 }

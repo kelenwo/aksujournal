@@ -28,6 +28,29 @@ $this->parser->parse('admin/head',$data);
   $this->parser->parse('admin/add_contestant',$res);
 }
 
+public function archives() {
+$data['title'] = "Admin Panel - Archives";
+$this->parser->parse('admin/head',$data);
+$this->parser->parse('admin/archives',$data);
+}
+
+public function articles() {
+$data['title'] = "Admin Panel - Articles";
+$this->parser->parse('admin/head',$data);
+$this->parser->parse('admin/articles',$data);
+}
+
+public function team() {
+$data['title'] = "Admin Panel - Editorial Team";
+$this->parser->parse('admin/head',$data);
+$this->parser->parse('admin/team',$data);
+}
+
+public function users() {
+$data['title'] = "Admin Panel - Users";
+$this->parser->parse('admin/head',$data);
+$this->parser->parse('admin/users',$data);
+}
 //
 public function get_contestant() {
 //select student bio from db based on logged in registration number
@@ -202,6 +225,12 @@ $data['stop'] = $res->stop;
 }
 $this->parser->parse('admin/head',$data);
 $this->parser->parse('admin/settings',$data);
+      }
+
+      public function submssions() {
+$data['title'] = "Admin Panel - Submissions";
+$this->parser->parse('admin/head',$data);
+$this->parser->parse('admin/submissions',$data);
       }
 
       public function get_code() {
