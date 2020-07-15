@@ -817,6 +817,16 @@ label {
   font-family: "Ubuntu-Regular" !important;
   font-size: 14px;
 }
+.box-custom {
+  min-width: 200px;
+  min-height: 200px;
+  border: 1px #ddd solid;
+  border-radius: 8px;
+  background-color: #eee;
+  padding: 10px;
+  display: inline-block;
+}
+
 .box {
 display: inline-block;
 margin: 2px;
@@ -3173,11 +3183,14 @@ margin: 5px;
 }
 
 .custom-tbl {
-  font-size: 15px;
+  font-size: 15px !important;
 }
 .actions {
   font-size: 13px;
 }
 .actions i{
   font-size: 15px;
+}
+.actions a{
+  cursor: pointer;
 }

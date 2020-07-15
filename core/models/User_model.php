@@ -1,9 +1,8 @@
 <?php
 Class User_model Extends CI_model {
 
-//Check and verify voters data
+
   public function login() {
-//Select voters data from database
 $this->db->select('*');
 $this->db->where('reg_number',$this->input->post('reg_number'));
 $query = $this->db->get('voters');
@@ -27,22 +26,16 @@ elseif($query->num_rows() < 1) {
     public function register() {
 $data = $this->input->post();
 $query = $this->db->insert('users',$data);
-return $query->row();
-    }
-
-public function save_contestant($data) {
-$query = $this->db->insert('contestants', $data);
 if($query) {
   return true;
 } else {
   return false;
 }
+    }
 
-}
-
-public function update_contestant($data) {
+public function update_user($data) {
   $this->db->where('id',$this->input->post('id'));
-$query = $this->db->update('contestants', $data);
+$query = $this->db->update('users', $data);
 if($query) {
   return true;
 } else {
@@ -51,42 +44,127 @@ if($query) {
 
 }
 public function get_id() {
-  $query = $this->db->get('contestants');
+  $query = $this->db->get('users');
   return $query->num_rows();
 }
+
 public function get_biodata() {
 //Requests student data from database, based on the logged in user
 $this->db->select('*');
 $this->db->where('id',$this->input->post('id'));
-$query = $this->db->get('contestants');
+$query = $this->db->get('users');
 return $query->row();
 }
-public function get_contestants($val) {
-$this->db->select('*');
-$this->db->where('position',$val);
-$query =  $this->db->get('contestants');
+public function get_submissions_approved() {
+$this->db->where('status','approved');
+$query =  $this->db->get('submissions');
 if($query->num_rows() < 0) {
   return false;
 } else {
     return $query->result_array();
 }
 }
-public function get_positions() {
-  $query = $this->db->get('position');
+
+public function get_submissions_pending() {
+$this->db->where('status','pending');
+$query =  $this->db->get('submissions');
+if($query->num_rows() < 0) {
+  return false;
+} else {
+    return $query->result_array();
+}
+}
+
+public function get_articles() {
+$query =  $this->db->get('articles');
+if($query->num_rows() < 0) {
+  return false;
+} else {
+    return $query->result_array();
+}
+}
+public function get_volume() {
+  $query = $this->db->get('volume');
+  if($query->num_rows() < 0) {
+    return false;
+  } else {
+      return $query->result_array();
+  }
+}
+
+public function get_issue() {
+  $query = $this->db->get('issue');
+  if($query->num_rows() < 0) {
+    return false;
+  } else {
+      return $query->result_array();
+  }
+}
+
+public function get_editor() {
+  $this->db->where('position','editor');
+  $query = $this->db->get('users');
+  if($query->num_rows() < 0) {
+    return false;
+  } else {
+      return $query->result_array();
+  }
+}
+
+public function get_payments() {
+  $this->db->where('status','paid');
+  $query = $this->db->get('payments');
+  if($query->num_rows() < 0) {
+    return false;
+  } else {
+      return $query->result_array();
+  }
+}
+
+public function get_issues() {
+  $this->db->where('volume',$this->input->post('volume'));
+  $query = $this->db->get('issue');
   return $query->result_array();
 }
-public function get_position() {
-  $query = $this->db->get('position');
-  return $query->result_array();
-}
-public function save_voter($data) {
-  $query = $this->db->insert('voters', $data);
+
+public function save_issue() {
+  $query = $this->db->insert('issue', $this->input->post());
   if($query) {
     return true;
   } else {
     return false;
   }
 }
+
+public function update_issue() {
+  $this->db->where('id',$this->input->post('id'));
+  $query = $this->db->update('issue', $this->input->post());
+  if($query) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+public function save_volume() {
+  $query = $this->db->insert('volume', $this->input->post());
+  if($query) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+public function update_volume() {
+  $this->db->where('id',$this->input->post('id'));
+  $query = $this->db->update('volume', $this->input->post());
+  if($query) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 public function verify_voter() {
     $this->db->select('reg_number');
   $this->db->where('reg_number',$this->input->post('reg_number'));
@@ -97,17 +175,29 @@ public function verify_voter() {
   return false;
 }
 }
-public function save_code($reg,$code) {
-  $data = array(
-    'code' => $code,
-  );
-  $this->db->where('reg_number',$reg);
-  $query = $this->db->update('voters',$data);
+public function delete_item() {
+  $type = $this->input->post('type');
+
+  if($type=="volume") {
+  $this->db->where('id',$this->input->post('id'));
+  $query = $this->db->delete('volume');
   if($query) {
     return true;
   } else {
-    return false;
+    return mysqli_error();
   }
+}   elseif($type=="issue") {
+    $this->db->where('id',$this->input->post('id'));
+  $query = $this->db->delete('issue');
+  if($query) {
+    return true;
+  } else {
+    return mysqli_error();
+  }
+}   elseif($type=="articles") {
+  $query = $this->db->delete('articles');
+}
+
 }
 public function startstop() {
   $query = $this->db->get('settings');
@@ -161,10 +251,10 @@ public function check_vote() {
     return true;
   }
 }
-public function get_result($cout) {
+public function count_articles() {
 $this->db->select('*');
-$this->db->where('vote_for_id',$cout);
-$this->db->from('votes');
+$this->db->where('issue',$this->input->post('issue'));
+$this->db->from('articles');
 return $this->db->count_all_results();
 
 }

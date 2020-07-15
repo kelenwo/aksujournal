@@ -2,7 +2,7 @@
   <div class="panel panel-default">
 <div class="panel-heading">
   <h3 class="panel-title"><a href="javascript:void(0);" class="toggle-sidebar">
-    <span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a>Registered Users</h3>
+    <span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a>Editorial Team</h3>
 </div>
    <div class="panel-body">
 <div class="content-row">
@@ -48,8 +48,8 @@
     <td><b style="color:green;">15 September, 2020</b></td>
     <td class="actions">
       <a href="">Edit&nbsp;<i class="fa fa-pencil"></i></a>|
-      
-      <a href=""><b style="color:red;">Remove&nbsp;<i class="fa fa-trash-o"></i></a></b>
+      <a href=""><i class="fa fa-arrow-down"></i>&nbsp;(pdf)</a>|
+      <a href=""><b style="color:red;">delete&nbsp;<i class="fa fa-trash-o"></i></a></b>
         </td>
   </tr>
   </table>

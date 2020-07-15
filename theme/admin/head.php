@@ -12,11 +12,10 @@
 
   <!-- Google	Fonts -->
     <link href="<?php echo base_url(); ?>/theme/assets/css/fonts.css" rel="stylesheet" />
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
-    <!--  Jquery Core Script -->
-    <script src="<?php echo base_url(); ?>theme/admin/assets/jquery.min.js"></script>
+	    <!--  Jquery Core Script -->
+    <script src="<?php echo base_url(); ?>theme/assets/jquery.min.js"></script>
     <!--  Core Bootstrap Script -->
-    <script src="<?php echo base_url(); ?>theme/style/assets/js/bootstrap.js"></script>
+    <script src="<?php echo base_url(); ?>theme/assets/js/bootstrap.js"></script>
     <!--  Flexslider Scripts -->
          <script src="<?php echo base_url(); ?>theme/assets/js/jquery.flexslider.js"></script>
      <!--  Scrolling Reveal Script -->
@@ -25,12 +24,9 @@
     <script src="<?php echo base_url(); ?>theme/assets/js/jquery.easing.min.js"></script>
     <!--  Custom Scripts -->
          <script src="<?php echo base_url(); ?>theme/assets/js/custom.js"></script>
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
     <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!-- [if lt IE 9] -->
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
      <!--[endif] -->
     <script type="text/javascript" src="<?php echo base_url(); ?>/style/dist/js/site.min.js"></script>
   </head>
@@ -76,7 +72,7 @@
               Archives</a></li>
               <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>admin/articles"><i class="glyphicon glyphicon-list-alt"></i>
             Articles</a></li>
-                <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>admin/add_voters"><i class="fa fa-users"></i>
+                <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>admin/team"><i class="fa fa-users"></i>
               Editorial Team</a></li>
                           <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>admin/users"><i class="fa fa-user"></i>
           Manage Users</a></li>

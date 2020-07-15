@@ -29,12 +29,21 @@ $this->parser->parse('admin/head',$data);
 }
 
 public function archives() {
+$data['volume'] = $this->user_model->get_volume();
+$data['issue'] = $this->user_model->get_issue();
 $data['title'] = "Admin Panel - Archives";
 $this->parser->parse('admin/head',$data);
 $this->parser->parse('admin/archives',$data);
 }
 
+public function count_articles() {
+$data['articles'] = $this->user_model->count_articles();
+echo $data['articles'];
+}
 public function articles() {
+  $data['volume'] = $this->user_model->get_volume();
+  $data['issue'] = $this->user_model->get_issue();
+  $data['article'] = $this->user_model->get_articles();
 $data['title'] = "Admin Panel - Articles";
 $this->parser->parse('admin/head',$data);
 $this->parser->parse('admin/articles',$data);
@@ -51,6 +60,71 @@ $data['title'] = "Admin Panel - Users";
 $this->parser->parse('admin/head',$data);
 $this->parser->parse('admin/users',$data);
 }
+
+public function settings() {
+$data['title'] = "Admin Panel - Settings";
+$res = $this->user_model->get_volume();
+$ress = $this->user_model->get_issue();
+$data['volume'] = $res;
+$data['issue'] = $ress;
+$this->parser->parse('admin/head',$data);
+$this->parser->parse('admin/settings',$data);
+}
+
+public function submssions() {
+$data['title'] = "Admin Panel - Submissions";
+$this->parser->parse('admin/head',$data);
+$this->parser->parse('admin/submissions',$data);
+}
+
+public function save_issue() {
+$issue = $this->user_model->save_issue();
+if($issue==true) {
+echo 'saved';
+} else {
+echo 'fail';}
+}
+
+public function get_issue() {
+$issue = $this->user_model->get_issues();
+foreach($issue as $issues) {
+echo '<option value="'.$issues['issue'].'">'.$issues['issue'].'</option>';
+}
+}
+
+public function update_issue() {
+$issue = $this->user_model->update_issue();
+if($issue==true) {
+echo 'saved';
+} else {
+echo 'fail';}
+}
+
+public function save_volume() {
+$volume = $this->user_model->save_volume();
+if($volume==true) {
+echo 'saved';
+} else {
+echo 'fail';}
+}
+
+public function update_volume() {
+$volume = $this->user_model->update_volume();
+if($volume==true) {
+echo 'saved';
+} else {
+echo 'fail';}
+}
+
+//handles delete button
+public function delete_item() {
+$del = $this->user_model->delete_item();
+if($del==true) {
+echo 'true';
+} else {
+echo $del;}
+}
+
 //
 public function get_contestant() {
 //select student bio from db based on logged in registration number
@@ -67,34 +141,15 @@ $data['loading'] = '<img heigth="15" width="15" src="'.base_url().'theme/assets/
 }
   public function do_upload(){
 //upload contestant passport
-if($this->input->post('type') == 'reg') {
+if($this->input->post('type') == 'document') {
   //$name = explode($this->input->post('name'),' ');
-  $id = $this->user_model->get_id();
-  $usid = $id + 1;
-  if($usid < 10) {
-    $uid = '00'.$usid;
-  } elseif($usid > 9) {
-    $uid = '0'.$usid;
-  }
-$config['allowed_types']        = 'gif|jpg|png|jpeg';
-$config['max_size']             = 1000;
-$config['max_width']            = 1024;
-$config['max_height']           = 768;
-$config['file_name']          =  $uid.'.jpg';
-$config['upload_path']          = './uploads/';
+$config['allowed_types']        = 'doc|docx';
+$config['max_size']             = 10000;
+$config['file_name']          =  $this->input->post("title").'.docx';
+$config['upload_path']          = './uploads/articles/publications/';
 $this->upload->initialize($config);
-        if($this->upload->do_upload("userfile")){
-            $image= $this->upload->data('file_name');
-            $data = array(
-'name' => $this->input->post('name'),
-'email' => $this->input->post('email'),
-'phone' => $this->input->post('phone'),
-'gender' => $this->input->post('gender'),
-'position' => $this->input->post('position'),
-'manifesto' => $this->input->post('manifesto'),
-'passport' => $image,
-'id' => $uid,
-            );
+        if($this->upload->do_upload("document")){
+$document = $this->upload->data('file_name');
             $result= $this->user_model->save_contestant($data);
       if($result==true) {
 
@@ -215,23 +270,6 @@ $data = array(
   }
         }
 
-
-      public function settings() {
-$data['title'] = "Admin Panel - Settings";
-$res = $this->user_model->startstop();
-if($res==false){} else{
-$data['start'] = $res->start;
-$data['stop'] = $res->stop;
-}
-$this->parser->parse('admin/head',$data);
-$this->parser->parse('admin/settings',$data);
-      }
-
-      public function submssions() {
-$data['title'] = "Admin Panel - Submissions";
-$this->parser->parse('admin/head',$data);
-$this->parser->parse('admin/submissions',$data);
-      }
 
       public function get_code() {
 //generate voters pin
