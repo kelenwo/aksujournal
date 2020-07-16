@@ -54,7 +54,8 @@
 <td><?php echo $req['date']; ?></td>
 <td class="actions">
   <a href="#edit_article_<?php echo $req['id'];?>" data-toggle="modal">Edit&nbsp;<i class="fa fa-pencil"></i></a>|
-  <a id="dl-article-<?php echo $req['id'];?>"><b style="color:red;">(.docx)&nbsp;<i class="fa fa-download"></i></a></b>|
+  <a href="<?php echo base_url();?>download/articles/publications/<?php echo $req['document'];?>" id="dl-article-<?php echo $req['id'];?>"><b style="color:red;">(.docx)&nbsp;<i class="fa fa-download"></i>
+</a></b>|
   <a id="del-article-<?php echo $req['id'];?>"><b style="color:red;">delete&nbsp;<i class="fa fa-trash-o"></i></a></b>
   <form id="del_article-<?php echo $req['id'];?>">
   <input type="hidden" name="id" value="<?php echo $req['id'];?>">
@@ -76,35 +77,33 @@
  <span class="input-group-addon">
  <i class="fa fa-user"></i>
  </span>
-<input type="text" name="title" value="<?php echo $req['title'];?>" required class="form-control" id="title">
+<input type="text" name="title" value="<?php echo $req['title'];?>" required class="form-control" id="title-<?php echo $req["id"];?>">
 <input type="hidden" name="id" value="<?php echo $req['id'];?>">
 </div></div>
-<div class="form-group">
- <label class="control-label">Issue</label>
- <div class="input-group">
-<span class="input-group-addon">
-<i class="fa fa-th-list"></i>
-</span>
- <select name="issue" id="optionissue" class="form-control input-sm">
- <option>- Issue -</option>
- <?php foreach ($issue as $iss ) {
-?> <option value="<?php echo $iss['volume'];?>" <?php if($req['issue']==$iss['issue']){ echo 'selected';}?>><?php echo $iss['issue'];?></option>
-<?php }?>
- </select>
- </div></div>
+
 <div class="form-group">
  <label class="control-label">Volume</label>
  <div class="input-group">
 <span class="input-group-addon">
 <i class="fa fa-th-list"></i>
 </span>
- <select name="volume" id="optionvol" class="form-control input-sm">
+ <select name="volume" id="optionvol-<?php echo $req["id"];?>" class="form-control input-sm">
  <option>- Volume -</option>
  <?php foreach ($volume as $vol ) {
 ?> <option value="<?php echo $vol['volume'];?>" <?php if($req['volume']==$vol['volume']){ echo 'selected';}?>><?php echo $vol['volume'];?></option>
 <?php }?>
  </select>
  </div></div>
+
+ <div class="form-group">
+  <label class="control-label">Issue <i class="fa fa-gear fa-spin" id="loadingissue-<?php echo $req['id'];?>"></i></label>
+  <div class="input-group">
+ <span class="input-group-addon">
+ <i class="fa fa-th-list"></i>
+ </span>
+  <select name="issue" id="optionissue-<?php echo $req["id"];?>" class="form-control input-sm">
+  </select>
+  </div></div>
  <div class="form-group">
  <label for="abstract">Abstract</label>
  <div class="input-group">
@@ -127,7 +126,31 @@
  </div>
 <script>
 $(document).ready(function() {
+$("#loadingissue-<?php echo $req['id'];?>").hide();
+  $.ajax({
+    url:'<?php echo base_url()."admin/get_issue";?>',
+    type: "POST",
+    data: $('#edit_article-<?php echo $req["id"];?>').serialize(),
+    success:function(data) {
+  $('#optionissue-<?php echo $req["id"];?>').html(data);
+    }
+  });
+//Reload issues list from db on volume change
+  $('#optionvol-<?php echo $req['id'];?>').on('change',function() {
+  $('#loading-issue-<?php echo $req['id'];?>').show();
+  $.ajax({
+    url:'<?php echo base_url()."admin/get_issue";?>',
+    type: "POST",
+    data: $('#edit_article-<?php echo $req['id'];?>').serialize(),
+    success:function(data) {
+  $('#loading-issue-<?php echo $req['id'];?>').hide();
+  $('#optionissue-<?php echo $req['id'];?>').html(data);
+    }
+  });
+  });
+//download file
 
+//delete article
 $('#loadingarticle-<?php echo $req["id"];?>').hide();
 $("#del-article-<?php echo $req['id'];?>").click(function(){
   if (confirm("Do you want to delete?")){
@@ -151,12 +174,12 @@ window.location.href = "<?php echo $_SERVER['PHP_SELF'];?>";
 $("#save-article-edit-<?php echo $req['id'];?>").click(function() {
 $("#loadingarticle-<?php echo $req['id'];?>").show();
 $.ajax({
-  url:'<?php echo base_url()."admin/update_issue";?>',
+  url:'<?php echo base_url()."admin/update_article";?>',
   type: "POST",
   data: $("#edit_article-<?php echo $req['id'];?>").serialize(),
   success:function(data) {
 $("#loadingarticle-<?php echo $req['id'];?>").hide();
-  if(data=="saved") {
+  if(data=="true") {
 $("#editarticlemsg-<?php echo $req['id'];?>").html('saved');
 $("#edit_article-<?php echo $req['id'];?>")[0].reset();
 window.location.href = "<?php echo $_SERVER['PHP_SELF'];?>";
@@ -166,6 +189,7 @@ $('#editarticlemsg-<?php echo $req["id"];?>').html(data);
   }
 });
 });
+
 });
 </script>
 <?php endforeach;
@@ -226,7 +250,8 @@ endif;?>
 
           </select>
         </div></div></div>
-
+<input type="hidden" name="document" value="" id="doc">
+ <input type="hidden" name="date" value="<?php echo date('d-M-Y'); ?>">
         <div class="col-md-12 col-xs-12">
       <div class="form-group">
       <label for="abstract">Abstract</label>
@@ -237,26 +262,25 @@ endif;?>
         <textarea class="form-control" name="abstract">
         </textarea>
       </div></div></div>
-
-      <div class="col-md-12 col-xs-6">
-      <div class="form-group">
-      <label for="file">Upload Article <small style="color:red">(.doc, .docx)</small></label>
-      <div class="input-group">
-        <span class="input-group-addon">
-        <i class="fa fa-user"></i>
-        </span>
-        <input type="file" class="form-control" name="document">
-      </div></div></div>
-      <div class="col-md-6 col-sm-6">
-              <div class="box-custom-1 text-center">
-              hello world
-            </div>
-          </div>
-
-
+ </form>
+ <form id="upload">
+ <div class="col-md-12 col-xs-6">
+ <div class="form-group">
+ <label for="file">Upload Article <small style="color:red">(.doc, .docx)</small></label>
+ <br><b id="loading-file"><i class="fa fa-spinner fa-spin"></i> Uploading file, please wait.</b>
+ <b id="success"></b>
+ <div class="input-group">
+   <span class="input-group-addon">
+   <i class="fa fa-file-word-o"></i>
+   </span>
+   <input type="file" class="form-control" name="document" id="document">
+   <input type="hidden" name="type" value="document">
+   <input type="hidden" name="title" value="" id="ttl">
+ </div></div></div>
+</form>
         <div class="col-md-12 col-xs-12">
       <div class="form-group">
-              <button class="btn btn-primary" name="save_personal" type="submit" id="submit">Submit
+              <button class="btn btn-primary" id="submit">Submit
           <i class="fa fa-gear fa-spin" id="loading"></i>
         </button>
       </div></div>
@@ -264,7 +288,6 @@ endif;?>
         </div>
         </div>
 
-     </form>
  </div>
 
 </div>
@@ -282,7 +305,11 @@ $(document).ready(function() {
 
 //Hide all loading icons
 $('#loading-issue').hide();
+$('#loading-file').hide();
 $('#loading').hide();
+$('#submit').attr('disabled','disabled');
+//$('#success').hide();
+
 //get Issue list from db
 $('#volume-select').on('change',function() {
 $('#loading-issue').show();
@@ -294,14 +321,20 @@ $.ajax({
 $('#loading-issue').hide();
 $('#getissue').html(data);
   }
-})
+});
 });
 
-$('#form').submit(function(e){
-$('#loading').show();
+$('#document').on('change',function() {
+  var title = $('#title').val();
+$('#ttl').val(title);
+$('#upload').submit();
+});
+
+$('#upload').submit(function(e){
+$('#loading-file').show();
             e.preventDefault();
                  $.ajax({
-                     url:'<?php echo base_url();?>admin/upload_excel',
+                     url:'<?php echo base_url();?>admin/do_upload',
                      type:"post",
                      data:new FormData(this),
                      processData:false,
@@ -309,11 +342,29 @@ $('#loading').show();
                      cache:false,
                      async:false,
                       success: function(data){
-$('#loading').hide();
-    $('#msg').html(data);
-9    }
+$('#loading-file').hide();
+$('#success').html(data);
+$('#submit').removeAttr('disabled');
+    }
                  });
             });
-         
+
+$('#submit').on('click',function() {
+$('#loading').show();
+$.ajax({
+  url:'<?php echo base_url()."admin/publish_article";?>',
+  type: "POST",
+  data: $('#add_article').serialize(),
+  success:function(data) {
+$('#loading').hide();
+if(data=="true") {
+alert('Article has been published successfully');
+window.location.href = "<?php echo $_SERVER['PHP_SELF'];?>";
+} else {
+  $('#msg').html(data);
+}
+  }
+})
+});
 });
 </script>

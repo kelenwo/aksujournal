@@ -165,6 +165,15 @@ public function update_volume() {
   }
 }
 
+public function publish_article() {
+  $query = $this->db->insert('articles', $this->input->post());
+  if($query) {
+    return true;
+  } else {
+    return mysqli_error();
+  }
+}
+
 public function verify_voter() {
     $this->db->select('reg_number');
   $this->db->where('reg_number',$this->input->post('reg_number'));
@@ -257,5 +266,15 @@ $this->db->where('issue',$this->input->post('issue'));
 $this->db->from('articles');
 return $this->db->count_all_results();
 
+}
+
+public function update_article() {
+  $this->db->where('id',$this->input->post('id'));
+  $query = $this->db->update('articles', $this->input->post());
+  if($query) {
+    return true;
+  } else {
+    return mysqli_error();
+  }
 }
 }
