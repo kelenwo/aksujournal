@@ -76,8 +76,8 @@
               Editorial Team</a></li>
                           <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>admin/users"><i class="fa fa-user"></i>
           Manage Users</a></li>
-            <li><a class="list-group-item" id="add-tab" href="<?php echo base_url();?>admin/edit_contestant"><i class="fa fa-bell">
-            </i>Notifications</a></li>
+            <li><a class="list-group-item" id="add-tab" href="<?php echo base_url();?>admin/news"><i class="fa fa-bell">
+            </i>News</a></li>
             <li><a class="list-group-item" id="settings-tab" href="<?php echo base_url();?>admin/submssions">
               <i class="fa fa-list-alt"></i> Submissions</a></li>
                 <li><a class="list-group-item" id="portal-tab" href="<?php echo base_url();?>admin/portal"><i class="fa fa-money"></i>

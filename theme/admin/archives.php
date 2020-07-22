@@ -37,8 +37,9 @@
      <thead>
    <tr class="active">
      <th>#</th>
-     <th>issue Title</th>
+     <th>issue</th>
      <th>Volume</th>
+     <th>Archive</th>
      <th>Articles</th>
      <th>Date</th>
      <th>Actions</th>
@@ -53,6 +54,7 @@
        <td><?php  echo $i++.'.';?>
      <td><?php echo $req['issue']; ?></td>
        <td><?php echo $req['volume']; ?></td>
+       <td><?php echo $req['archive']; ?></td>
        <td><b id="article-count-<?php echo $req["id"];?>"></b>
          <form id="articles-<?php echo $req['id'];?>">
          <input type="hidden" name="issue" value="<?php echo $req['issue'];?>">

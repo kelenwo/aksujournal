@@ -1,0 +1,56 @@
+/*
+Template Name:Portal
+File: Layout CSS
+Author: Templates On Web
+Author URI: http://templateonweb.com/
+Licence: <a href="http://www.templateonweb.com/terms.php?v=content&contentid=152">Website Template Licence</a>
+*/
+/*********************contact****************/
+.contact_1 .head_bg{
+  margin-bottom:20px;
+  }
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  padding:10px 40px;
+}
+
+.contact_2 {
+margin-top:20px;
+  }
+.contact_2 form{
+  font-size:17px;
+  }
+/*********************contact_end****************/
+
+@media screen and (max-width : 767px){
+.contact{
+  text-align:center;
+  }
+input[type=submit]{
+ margin-left:auto;
+ margin-right:auto; 
+  }
+}
+
+@media (min-width:768px) and (max-width:991px) {
+
+ }
+ @media (min-width:992px) and (max-width:1200px) {
+
+ }
+@media (min-width:1201px) and (max-width:1335px) {
+
+ }
+
+
+

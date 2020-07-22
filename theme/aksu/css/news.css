@@ -1,0 +1,57 @@
+/*
+Template Name:Portal
+File: Layout CSS
+Author: Templates On Web
+Author URI: http://templateonweb.com/
+Licence: <a href="http://www.templateonweb.com/terms.php?v=content&contentid=152">Website Template Licence</a>
+*/
+/*********************news****************/
+.news_1 img{
+ float:left;
+ padding:0px 10px 10px 0px; 
+  }
+.news_1{
+border-bottom:2px solid #eee;
+padding-bottom:10px;  
+  }
+.news_2 h3{
+  border-bottom:2px solid #eee;
+  padding-bottom:10px;
+  margin-bottom:20px;
+  }
+.news_2 h5 span{
+  color: #b9adad;
+  font-size: 12px;
+  }
+.news_2 h5{
+  border-bottom:2px dotted #eee;
+  padding-bottom:10px;
+  }
+/*********************news_end****************/
+
+@media screen and (max-width : 767px){
+.news {
+  text-align:center;
+  }
+.news_1 img{
+ float:none;
+ width:100%;
+ padding:0; 
+  }
+}
+
+@media (min-width:768px) and (max-width:991px) {
+.news_1 img{
+ width:250px;
+ height:250px; 
+  }
+ }
+ @media (min-width:992px) and (max-width:1200px) {
+
+ }
+@media (min-width:1201px) and (max-width:1335px) {
+
+ }
+
+
+

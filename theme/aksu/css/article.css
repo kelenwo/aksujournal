@@ -1,0 +1,71 @@
+/*
+Template Name:Portal
+File: Layout CSS
+Author: Templates On Web
+Author URI: http://templateonweb.com/
+Licence: <a href="http://www.templateonweb.com/terms.php?v=content&contentid=152">Website Template Licence</a>
+*/
+/*********************article****************/
+.art_2{
+  margin-top:20px;
+  margin-bottom:10px;
+  }
+.art_2_l{
+ background:#f4f4f4;
+ padding:5px 15px 20px 15px; 
+  }
+.art_2_l .button{
+width:70%;
+  }
+.art_3{
+  margin-top:15px;
+  }
+.art_3_in h3{
+ border-bottom: 2px solid #eee;
+ padding-bottom: 10px;
+ margin-bottom: 15px;
+ }
+.art_3_in_1 ul{
+list-style:disc;
+  }
+.art_3_in_1 ul li{
+ margin-top:5px; 
+  }
+/*********************article_end****************/
+
+@media screen and (max-width : 767px){
+.art {
+ text-align:center;
+ }
+.art_2_l .button{
+  margin-left:auto;
+  margin-right:auto;
+  }
+.art_2_r {
+ margin-top:10px;
+ }
+.mg_t{
+ margin-top:10px; 
+  }
+.art_3_in_1 ul{
+list-style:none; 
+  }
+.art_3_in_1 ul li{
+ display:inline-block;
+ padding-left:5px;
+ padding-right:5px; 
+  }
+}
+
+@media (min-width:768px) and (max-width:991px) {
+
+ }
+ @media (min-width:992px) and (max-width:1200px) {
+
+ }
+@media (min-width:1201px) and (max-width:1335px) {
+
+ }
+
+
+

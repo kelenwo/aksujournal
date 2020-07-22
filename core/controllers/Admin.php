@@ -16,17 +16,6 @@ $data['title'] = "Admin Panel";
 $this->parser->parse('admin/head',$data);
   $this->load->view('admin/index',$data);
         }
-//
-public function add_contestant() {
-//select student bio from db based on logged in registration number
-//$req = get_object_vars($this->admin_model->get_student_info());
-//$data = $req;
-$req = $this->user_model->get_position();
-$res['position'] = $req;
-$data['title'] = "Eportals - Update Biodata";
-$this->parser->parse('admin/head',$data);
-  $this->parser->parse('admin/add_contestant',$res);
-}
 
 public function archives() {
 $data['volume'] = $this->user_model->get_volume();
@@ -65,6 +54,7 @@ public function settings() {
 $data['title'] = "Admin Panel - Settings";
 $res = $this->user_model->get_volume();
 $ress = $this->user_model->get_issue();
+$data['archive'] = $this->user_model->get_archive();
 $data['volume'] = $res;
 $data['issue'] = $ress;
 $this->parser->parse('admin/head',$data);
@@ -72,6 +62,7 @@ $this->parser->parse('admin/settings',$data);
 }
 
 public function submssions() {
+$data['submission'] = $this->user_model->get_submissions();
 $data['title'] = "Admin Panel - Submissions";
 $this->parser->parse('admin/head',$data);
 $this->parser->parse('admin/submissions',$data);
@@ -96,6 +87,37 @@ public function update_issue() {
 $issue = $this->user_model->update_issue();
 if($issue==true) {
 echo 'saved';
+} else {
+echo 'fail';}
+}
+
+public function save_archive() {
+$issue = $this->user_model->save_archive();
+if($issue==true) {
+echo 'saved';
+} else {
+echo 'fail';}
+}
+
+public function update_archive() {
+$issue = $this->user_model->update_archive();
+if($issue==true) {
+echo 'saved';
+} else {
+echo 'fail';}
+}
+
+public function news() {
+$data['news'] = $this->user_model->get_news();
+$data['title'] = "Admin Panel - News";
+$this->parser->parse('admin/head',$data);
+$this->parser->parse('admin/news',$data);
+}
+
+public function update_news() {
+$issue = $this->user_model->update_news();
+if($issue==true) {
+echo 'true';
 } else {
 echo 'fail';}
 }
@@ -125,6 +147,29 @@ echo 'true';
 echo $del;}
 }
 
+public function publish_article() {
+$article = $this->user_model->publish_article();
+if($article==true) {
+echo 'true';
+} else {
+echo $article;}
+}
+
+public function publish_news() {
+$news = $this->user_model->publish_news();
+if($news==true) {
+echo 'true';
+} else {
+echo $news;}
+}
+
+public function update_article() {
+$article = $this->user_model->update_article();
+if($article==true) {
+echo 'true';
+} else {
+echo $article;}
+}
 //
 public function get_contestant() {
 //select student bio from db based on logged in registration number
@@ -150,59 +195,34 @@ $config['upload_path']          = './uploads/articles/publications/';
 $this->upload->initialize($config);
         if($this->upload->do_upload("document")){
 $document = $this->upload->data('file_name');
-            $result= $this->user_model->save_contestant($data);
-      if($result==true) {
-
-echo "<script>
-$('#pan').hide();
-$('#msg2').show();
-  </script>";
-  $this->load->view('admin/success',$data);
-} else {
-  echo "<script>
-  $('#msg2').hide();
-  $('#msg').html('An error occurred');
-    </script>";
-}
+echo '
+<b><i class="fa fa-check-square-o" style="color:green; font-size:14px;"> File Uploaded successfully</i></b>
+<script>
+$("#doc").val("'.$document.'");
+</script>';
         } else {
           $msg = $this->upload->display_errors();
-          echo "<script>
-          $('#msg2').hide();
-          $('#msg').html('.$msg.');
-            </script>";
+          echo '
+          <i class="fa fa-info-circle" style="color:red;">'.$msg.'</i>';
 		}
-  } elseif($this->input->post('type') == 'edit') {
-    $config['allowed_types']        = 'gif|jpg|png|jpeg';
-    $config['max_size']             = 1000;
-    $config['max_width']            = 1024;
-    $config['max_height']           = 768;
-    $config['file_name']          =  $this->input->post('passport');
-    $config['upload_path']          = './uploads/';
+  } elseif($this->input->post('type') == 'image') {
+    $config['allowed_types']        = 'jpg|jpeg|png';
+    $config['max_size']             = 10000;
+    $config['file_name']          =  $this->input->post("title").'.docx';
+    $config['upload_path']          = './uploads/articles/publications/';
     $this->upload->initialize($config);
-          if($this->upload->do_upload("userfile")){
-            $data = array(
-'name' => $this->input->post('name'),
-'email' => $this->input->post('email'),
-'phone' => $this->input->post('phone'),
-'gender' => $this->input->post('gender'),
-'position' => $this->input->post('position'),
-'manifesto' => $this->input->post('manifesto'),
-'passport' => $this->input->post('passport'),
-'id' => $this->input->post('id')
-            );
-$result= $this->user_model->update_contestant($data);
-        if($result==true) {
-
-    echo '<script>
-    $("#return").html("Contestant data successfully updated");
+            if($this->upload->do_upload("document")){
+    $document = $this->upload->data('file_name');
+    echo '
+    <b><i class="fa fa-check-square-o" style="color:green; font-size:14px;"> File Uploaded successfully</i></b>
+    <script>
+    $("#doc").val("'.$document.'");
     </script>';
-$this->parser->parse('admin/get_biodata');
-    } else {
-  echo 'An error occured';
-    }
-  } else {
-    echo $this->upload->display_errors();
-  }
+            } else {
+              $msg = $this->upload->display_errors();
+              echo '
+              <i class="fa fa-info-circle" style="color:red;">'.$msg.'</i>';
+    		}
 }
 }
   public function edit_contestant() {

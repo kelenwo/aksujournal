@@ -1,0 +1,243 @@
+/*
+Template Name:Portal
+File: Layout CSS
+Author: Templates On Web
+Author URI: http://templateonweb.com/
+Licence: <a href="http://www.templateonweb.com/terms.php?v=content&contentid=152">Website Template Licence</a>
+*/
+/*********************center_home****************/
+.head{
+
+  font-weight: bold;
+  color: white !important;
+  margin-left: 0px;
+  margin-right: 150px;
+  position: absolute;
+  text-align: center;
+  float: left;
+  }
+.img{
+  height: 400px;
+  width: 100px;
+}
+.img1{
+  height: 100px;
+  max-width: 100%;
+  margin-left: 0px;
+  margin-top: 0px;
+ 
+}
+.img2{
+  height: 100px;
+  max-width: 100%;
+  margin-left: 0px;
+  margin-top: 0px;
+  float: right;
+  position:relative;
+  
+  }
+.center_home{
+  padding-top:20px;
+  padding-bottom:30px;
+  }
+.breadcrumb{
+  background:none;
+  padding-bottom:0;
+  margin-bottom:10px;
+  }
+.breadcrumb li  {
+  font-weight:bold;
+  font-size:18px;
+  }
+.center_home_2_inner_heading ul li a {
+  background:#f4f4f4;
+  }
+.center_home_2_inner_heading ul li a:hover {
+  background:#fff;
+  }
+.center_home_2_inner_heading ul li a{
+  display:block;
+  padding:7px 15px;
+  border-bottom:1px solid #ccc;
+  }
+.center_home_2_inner img{
+ margin-top:10px; 
+  }
+.center_home_2_inner_login{
+ background:#f4f4f4;
+ padding:20px 15px;
+ margin-top:10px; 
+  }
+.center_home_2_inner_login ul{
+  list-style:disc;
+  margin:10px 15px;
+  }
+.center_home_2_inner_login label{
+ font-size:16px;
+  }
+  
+.center_home_2_inner_1_inner img{
+ float:left;
+ padding:0px 10px 10px 0px; 
+  }
+.center_home_2_inner_1_inner_1{
+ border-bottom:2px solid #eee;
+ padding-bottom:10px; 
+ margin-top:10px;
+  }
+.center_home_2_inner_1_inner_1_left h4{
+  text-align:center;
+  }  
+.center_home_2_inner_1_inner_1_right h6{
+color: #080808;
+font-size:18px;
+  }
+.center_home_2_inner_1_inner_3{
+  background:#FEDC8B;
+  padding:5px 15px 2px 15px;
+  margin-top:10px;
+  }
+.center_home_2_inner_1_inner_3 a{
+  margin-left:70px;
+  }
+.date{
+  margin-right:10px;
+  font-size:17px;
+  }
+.city{
+  font-size:17px;
+  }
+
+.center_home_2_inner_2_inner_1{
+  margin-top:10px;
+  }
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
+  color:#000;
+  }
+
+.center_home_2_inner_2_inner h4{
+ letter-spacing:1px; 
+  }
+.center_home_2_inner_1_inner_2 {
+  margin-top:10px;
+  margin-bottom:10px;
+  }
+.center_home_2_inner_1_inner_2 h4{
+  font-size:24px;
+  }
+.center_home_2_inner_1_inner_2 p{
+ margin-top:5px;
+  }
+.home_inner h6{
+ color: #b9adad;
+ font-size: 12px;
+ }
+/*********************center_home_end****************/
+ @media (min-width:360px) and (max-width:766px) {
+  .head h1{
+  font-size: 10px;
+  margin: 0 -70px 0 -10px;
+  }
+  .img1{
+  height: 60px;
+  }
+.img2{
+  height: 60px; 
+ }
+}
+@media screen and (max-width : 767px){
+  .hide-sm {
+    display: none !important;
+  }
+  .head h1 {
+    font-size: 20px !important;
+  }
+.center_home_1{
+ text-align:justify;
+  }
+.center_home_2_inner  {
+ text-align:justify; 
+  }
+
+.center_home_2_inner_1_inner img{
+ width:100%;
+ float:none;
+ padding:0;
+  }
+.center_home_2_inner_1 p{
+ text-align:justify;
+ font-size: 18px !important; 
+  }
+.center_home_2_inner_1_inner_3 br{
+display:block;  
+  }
+.center_home_2_inner_1_inner_3 a{
+margin-left:0;  
+  }
+.center_home_2_inner_2 {
+  text-align:center;
+  }
+.nav-tabs{
+ width:70%;
+ margin-left:auto;
+ margin-right:auto; 
+  }
+.center_home_2_inner_login ul{
+ list-style:none; 
+  }
+}
+
+@media (min-width:768px) and (max-width:991px) {
+.head h1{
+  font-size: 24px;
+  margin: 0 -50px 0 -10px
+  }
+  .img1{
+  height: 80px;
+  }
+.img2{
+  height: 80px; 
+ }
+.heading_tag{
+ font-size:20px; 
+  }
+.center_home_2_inner_1_inner img{
+ width:180px;
+ height:180px; 
+  }
+.center_home_2_inner_1_inner_1_left h4{
+ font-size:14px; 
+  }
+.nav-tabs li a{
+  font-size:12px;
+  padding:5px;
+  }
+ }
+ @media (min-width:992px) and (max-width:1200px) {
+  .head h1{
+  font-size: 32px;
+  }
+  .img1{
+  height: 90px;
+  }
+.img2{
+  height: 90px; 
+ }
+.center_home_2_inner_1_inner img{
+ width:250px;
+ height:200px; 
+  }
+.center_home_2_inner_1_inner_1_left h4{
+ font-size:16px; 
+  }
+.nav-tabs li a{
+  padding:5px;
+  }
+ }
+
+@media (min-width:1201px) and (max-width:1335px) {
+
+ }
+
+
+

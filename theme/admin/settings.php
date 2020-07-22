@@ -21,6 +21,7 @@
   <ul id="myTab1" class="nav nav-tabs nav-justified">
  <li class="active"><a class="" href="#tab1" data-toggle="tab">Volumes</a></li>
  <li class=""><a href="#tab2" data-toggle="tab">Issues</a></li>
+  <li class=""><a href="#tab3" data-toggle="tab">Archives</a></li>
   </ul>
   <div id="myTabContent" class="tab-content">
  <div class="tab-pane fade  active in" id="tab1">
@@ -36,18 +37,20 @@
  <tr class="active">
    <th>#</th>
    <th>Volume</th>
+  <th>Archive</th>
    <th>Date</th>
    <th>Actions</th>
     </tr>
    </thead>
    <tbody>
  <?php if($volume==false): ?>
-   <tr><td colspan="3"><h4 class="text-center">NO DATA TO DISPLAY</h4></td></tr>
+   <tr><td colspan="5"><h4 class="text-center">NO DATA TO DISPLAY</h4></td></tr>
  <?php else: $i = 1;?>
 <?php foreach ($volume as $res): ?>
     <tr>
   <td><?php  echo $i++.'.';?>
    <td><?php echo $res['volume']; ?></td>
+    <td><?php echo $res['archive']; ?></td>
    <td><?php echo $res['date']; ?></td>
    <td class="actions">
      <a href="#edit_volume_<?php echo $res['id'];?>" data-toggle="modal">Edit&nbsp;<i class="fa fa-pencil"></i></a>|
@@ -72,6 +75,19 @@
       </span>
     <input type="text" name="volume" value="<?php echo $res['volume'];?>" required class="form-control" id="volume" placeholder="Volume">
       </div></div>
+      <div class="form-group">
+        <label class="control-label">Archive</label>
+        <div class="input-group">
+      <span class="input-group-addon">
+      <i class="fa fa-th-list"></i>
+      </span>
+        <select name="archive" class="form-control input-sm">
+        <option>- Archive -</option>
+        <?php foreach ($archive as $arcs ) {
+       ?> <option value="<?php echo $arcs['archive'];?>" <?php if($res['archive']==$arcs['archive']){ echo 'selected';}?>><?php echo $arcs['archive'];?></option>
+     <?php }?>
+        </select>
+        </div></div>
       <input type="hidden" name="id" value="<?php echo $res['id'];?>">
       <div class="form-group" id="editvolmsg-<?php echo $res['id'];?>"></div>
       </div>
@@ -150,19 +166,21 @@ $('#loadingvol-<?php echo $res["id"];?>').hide();
   <th>#</th>
   <th>issue Title</th>
   <th>Volume</th>
+  <th>Archive</th>
   <th>Date</th>
   <th>Actions</th>
 </tr>
   </thead>
     <tbody>
   <?php if($issue==false): ?>
-    <tr><td colspan="4"><h4 class="text-center">NO DATA TO DISPLAY</h4></td></tr>
+    <tr><td colspan="5"><h4 class="text-center">NO DATA TO DISPLAY</h4></td></tr>
   <?php else: $i=1;?>
 <?php  foreach($issue as $req): ?>
 <tr>
     <td><?php  echo $i++.'.';?>
   <td><?php echo $req['issue']; ?></td>
     <td><?php echo $req['volume']; ?></td>
+    <td><?php echo $req['archive']; ?></td>
   <td><?php echo $req['date']; ?></td>
   <td class="actions">
     <a href="#edit_issue_<?php echo $req['id'];?>" data-toggle="modal">Edit&nbsp;<i class="fa fa-pencil"></i></a>|
@@ -203,6 +221,19 @@ $('#loadingvol-<?php echo $res["id"];?>').hide();
 <?php }?>
    </select>
    </div></div>
+   <div class="form-group">
+     <label class="control-label">Archive</label>
+     <div class="input-group">
+   <span class="input-group-addon">
+   <i class="fa fa-th-list"></i>
+   </span>
+     <select name="archive" class="form-control input-sm">
+     <option>- Archive -</option>
+     <?php foreach ($archive as $arcs ) {
+    ?> <option value="<?php echo $arcs['archive'];?>" <?php if($res['archive']==$arcs['archive']){ echo 'selected';}?>><?php echo $arcs['archive'];?></option>
+  <?php }?>
+     </select>
+     </div></div>
    <div class="form-group" id="editissuemsg-<?php echo $req['id'];?>"></div>
    </div>
    <div class="modal-footer">
@@ -248,7 +279,7 @@ $('#loadingissue-<?php echo $req["id"];?>').hide();
   $("#edit_issue-<?php echo $req['id'];?>")[0].reset();
   window.location.href = "<?php echo $_SERVER['PHP_SELF'];?>";
     } else {
-  $('#editissuemsg-<?php echo $res["id"];?>').html(data);
+  $('#editissuemsg-<?php echo $req["id"];?>').html(data);
     }
     }
   });
@@ -262,6 +293,121 @@ endif;?>
  </div>
  </div>
  </div>
+
+<!-- Archives -->
+<div class="tab-pane fade" id="tab3">
+
+ <div class="col-md-12">
+  <a href="#add_archives" data-toggle="modal" id="newarch" class="btn btn-none btn-primary btn-block">ADD ARCHIVE + </a>
+ </div>
+
+<div class="col-md-12">
+ <div class="panel">
+<table class="table table-hover table-responsive custom-tbl">
+  <thead>
+<tr class="active">
+  <th>#</th>
+  <th>Archive</th>
+  <th>Date</th>
+  <th>Actions</th>
+   </tr>
+  </thead>
+  <tbody>
+<?php if($archive==false): ?>
+  <tr><td colspan="3"><h4 class="text-center">NO DATA TO DISPLAY</h4></td></tr>
+<?php else: $i = 1;?>
+<?php foreach ($archive as $ress): ?>
+   <tr>
+ <td><?php  echo $i++.'.';?>
+  <td><?php echo $ress['archive']; ?></td>
+  <td><?php echo $ress['date']; ?></td>
+  <td class="actions">
+    <a href="#edit_archive_<?php echo $ress['id'];?>" data-toggle="modal">Edit&nbsp;<i class="fa fa-pencil"></i></a>|
+    <a id="del-arch-<?php echo $ress['id'];?>"><b style="color:red;">Delete&nbsp;<i class="fa fa-trash-o"></i></a></b>
+    <form id="del_archive-<?php echo $ress['id'];?>">
+    <input type="hidden" name="id" value="<?php echo $ress['id'];?>">
+    <input type="hidden" name="type" value="archive">
+  </form>
+  <div class="modal fade" id="edit_archive_<?php echo $ress['id'];?>" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-content">
+     <div class="modal-header">
+    <h3 class="modal-title text-center">Edit Archive</h3>
+     </div>
+     <div class="modal-body">
+  <form name="edit_arch-<?php echo $ress['id'];?>" method="post" id="edit_arch-<?php echo $ress['id'];?>">
+     <div class="form-group">
+   <label for="archive">Archive</label>
+   <div class="input-group">
+     <span class="input-group-addon">
+     <i class="fa fa-user"></i>
+     </span>
+   <input type="text" name="archive" value="<?php echo $ress['archive'];?>" required class="form-control" id="archive" placeholder="Archive">
+     </div></div>
+     <input type="hidden" name="id" value="<?php echo $ress['id'];?>">
+     <div class="form-group" id="editarchmsg-<?php echo $ress['id'];?>"></div>
+     </div>
+     <div class="modal-footer">
+    <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal" >CANCEL</button>
+    <button type="button" id="save-arch-edit-<?php echo $ress['id'];?>" class="btn btn-primary">SUBMIT <i id="loadingarch-<?php echo $ress['id'];?>" class="fa fa-gear fa-spin"></i></button>
+  </form>
+     </div>
+  </div>
+  </div>
+     </div>
+      </td>
+</tr>
+<script>
+$(document).ready(function() {
+$('#loadingarch-<?php echo $ress["id"];?>').hide();
+ //Save archive edit
+ $('#save-arch-edit-<?php echo $ress["id"];?>').click(function() {
+ $('#loadingarch-<?php echo $ress["id"];?>').show();
+ $.ajax({
+   url:'<?php echo base_url()."admin/update_archive";?>',
+   type: "POST",
+   data: $('#edit_arch-<?php echo $ress["id"];?>').serialize(),
+   success:function(data) {
+ $('#loadingarch-<?php echo $ress["id"];?>').hide();
+   if(data=="saved") {
+ $('#editarchmsg-<?php echo $ress["id"];?>').html('saved');
+ $('#edit_arch-<?php echo $ress["id"];?>')[0].reset();
+ window.location.href = "<?php echo $_SERVER['PHP_SELF'];?>";
+   } else {
+ $('#editarchmsg-<?php echo $ress["id"];?>').html(data);
+   }
+   }
+ });
+ });
+
+ //Delete Archive
+ $("#del-arch-<?php echo $ress['id'];?>").click(function(){
+   if (confirm("Do you want to delete")){
+     $.ajax({
+       url:'<?php echo base_url()."admin/delete_item";?>',
+       type: "POST",
+       data: $('#del_archive-<?php echo $ress["id"];?>').serialize(),
+       success:function(data) {
+ if(data=='true') {
+ window.location.href = "<?php echo $_SERVER['PHP_SELF'];?>";
+ } else {
+   alert(data);
+ }
+ }
+ });
+ } else{
+     return false;
+   }
+ });
+});
+</script>
+  <?php endforeach;
+endif;?>
+  </tbody>
+</table>
+ </div>
+ </div>
+ </div><!-- panel body -->
 
  </div>
  <!-- issues end -->
@@ -296,6 +442,19 @@ endif;?>
  <input type="text" name="volume" required class="form-control" id="volume" placeholder="Volume">
  <input type="hidden" name="date" value="<?php echo date('d-M-Y'); ?>">
  </div></div>
+ <div class="form-group">
+<label for="volume">Volume</label>
+<div class="input-group">
+ <span class="input-group-addon">
+ <i class="fa fa-user"></i>
+ </span>
+ <select name="archive" id="archive" class="form-control input-sm">
+ <option>- Archive -</option>
+ <?php foreach ($archive as $arch ) {
+ ?> <option value="<?php echo $arch['archive'];?>"><?php echo $arch['archive'];?></option>
+ <?php }?>
+ </select>
+</div></div>
    <div class="form-group" id="addvolmsg"></div>
  </div>
  </div>
@@ -352,6 +511,19 @@ endif;?>
  </div>
  </div>
    </div>
+   <div class="form-group">
+     <label class="control-label">Archive</label>
+     <div class="input-group">
+   <span class="input-group-addon">
+   <i class="fa fa-th-list"></i>
+   </span>
+     <select name="archive" class="form-control input-sm">
+     <option>- Archive -</option>
+     <?php foreach ($archive as $arcs ) {
+    ?> <option value="<?php echo $arcs['archive'];?>"><?php echo $arcs['archive'];?></option>
+  <?php }?>
+     </select>
+     </div></div>
    <div class="modal-footer">
 <table class="" width="100%"><tr><td width="30%">
 </td><td width="70">
@@ -365,13 +537,50 @@ endif;?>
 </div>
    </div>
 <!-- Add Issue end -->
-
+<!-- Add volume -->
+<div class="modal fade" id="add_archives" tabindex="-1" role="dialog">
+<div class="modal-dialog modal-dialog-centered" role="document">
+   <div class="modal-content">
+   <div class="modal-header">
+  <h3 class="modal-title text-center">
+   Add Archive
+</h3>
+   </div>
+   <div class="modal-body">
+<div class="container-fluid">
+  <div class="">
+<form name="add_vol" method="post" id="add_archive">
+   <div class="form-group">
+ <label for="archive">Archive Title</label>
+ <div class="input-group">
+   <span class="input-group-addon">
+   <i class="fa fa-user"></i>
+   </span>
+ <input type="text" name="archive" required class="form-control" id="archive" placeholder="Archive title">
+ <input type="hidden" name="date" value="<?php echo date('d-M-Y'); ?>">
+ </div></div>
+   <div class="form-group" id="addarchivemsg"></div>
+ </div>
+ </div>
+   </div>
+   <div class="modal-footer">
+<table class="" width="100%"><tr><td width="30%">
+</td><td width="70">
+  <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal" >CANCEL</button>
+  <button type="button" id="save-archive" class="btn btn-primary">SUBMIT <i id="loading-archive" class="fa fa-gear fa-spin"></i></button>
+</td></tr></table>
+   </div>
+   </form>
+</div>
+</div>
+   </div>
 
 <script>
 $(document).ready(function() {
 //Hide all loading icons
 $('#loading-vol').hide();
 $('#loading-issue').hide();
+$('#loading-archive').hide();
 
 //Save volume
 $('#save-vol').click(function() {
@@ -408,6 +617,26 @@ $('#add_issues')[0].reset();
 window.location.href = "<?php echo $_SERVER['PHP_SELF'];?>";
   } else {
 $('#addissuemsg').html(data);
+  }
+  }
+})
+});
+
+//Save Archive
+$('#save-archive').click(function() {
+$('#loading-archive').show();
+$.ajax({
+  url:'<?php echo base_url()."admin/save_archive";?>',
+  type: "POST",
+  data: $('#add_archive').serialize(),
+  success:function(data) {
+$('#loading-archive').hide();
+  if(data=="saved") {
+$('#addarchivemsg').html('saved');
+$('#add_archive')[0].reset();
+window.location.href = "<?php echo $_SERVER['PHP_SELF'];?>";
+  } else {
+$('#addarchivemsg').html(data);
   }
   }
 })

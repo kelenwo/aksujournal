@@ -1,0 +1,62 @@
+/*
+Template Name:Portal
+File: Layout CSS
+Author: Templates On Web
+Author URI: http://templateonweb.com/
+Licence: <a href="http://www.templateonweb.com/terms.php?v=content&contentid=152">Website Template Licence</a>
+*/
+/*********************classified****************/
+.classi_1_in_1 ul li{
+ margin-top:10px;
+ }
+.classi_1_in_1 .button{
+padding:10px 0px 7px 0px;
+ }
+.classi_2{
+  margin-top:20px;
+  }
+table {
+  width: 100%;
+  margin-top:20px;
+}
+table i{
+ margin-right:5px; 
+  }
+td, th {
+  border: 1px solid #eee;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #FEDC8B;
+}
+.t_2 tr:nth-child(even) {
+  background-color: #D1DFEF;
+}
+.t_2 {
+ margin-bottom:20px; 
+  }
+/*********************classified_end****************/
+
+@media screen and (max-width : 767px){
+.classi {
+  margin-top:10px;
+  text-align:center;
+  }
+}
+
+@media (min-width:768px) and (max-width:991px) {
+.classi_1_in  h3{
+ font-size:20px; 
+  }
+ }
+ @media (min-width:992px) and (max-width:1200px) {
+
+ }
+@media (min-width:1201px) and (max-width:1335px) {
+
+ }
+
+
+
