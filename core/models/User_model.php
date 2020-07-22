@@ -223,6 +223,7 @@ public function publish_article() {
   }
 }
 
+<<<<<<< HEAD
 public function publish_news() {
   $query = $this->db->insert('news', $this->input->post());
   if($query) {
@@ -232,6 +233,8 @@ public function publish_news() {
   }
 }
 
+=======
+>>>>>>> 4f9893b6dcf0b490ececd17cab4b72646dbd0b19
 public function verify_voter() {
     $this->db->select('reg_number');
   $this->db->where('reg_number',$this->input->post('reg_number'));

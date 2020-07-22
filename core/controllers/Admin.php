@@ -30,6 +30,7 @@ $data['articles'] = $this->user_model->count_articles();
 echo $data['articles'];
 }
 public function articles() {
+$id = "hello";
   $data['volume'] = $this->user_model->get_volume();
   $data['issue'] = $this->user_model->get_issue();
   $data['article'] = $this->user_model->get_articles();
@@ -154,6 +155,7 @@ echo 'true';
 } else {
 echo $article;}
 }
+<<<<<<< HEAD
 
 public function publish_news() {
 $news = $this->user_model->publish_news();
@@ -163,6 +165,8 @@ echo 'true';
 echo $news;}
 }
 
+=======
+>>>>>>> 4f9893b6dcf0b490ececd17cab4b72646dbd0b19
 public function update_article() {
 $article = $this->user_model->update_article();
 if($article==true) {
