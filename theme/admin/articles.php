@@ -90,7 +90,7 @@
  <select name="volume" id="optionvol-<?php echo $req["id"];?>" class="form-control input-sm">
  <option>- Volume -</option>
  <?php foreach ($volume as $vol ) {
-?> <option value="<?php echo $vol['volume'];?>" <?php if($req['volume']==$vol['volume']){ echo 'selected';}?>><?php echo $vol['volume'];?></option>
+?> <option value="<?php echo $vol['volume'];?>" <?php if($req['volume']==$vol['volume']){ echo 'selected';}?>><?php echo $vol['archive'].'&nbsp;'.$vol['volume'];?></option>
 <?php }?>
  </select>
  </div></div>
@@ -110,9 +110,7 @@
    <span class="input-group-addon">
    <i class="fa fa-user"></i>
    </span>
-   <textarea class="form-control" name="abstract">
-     <?php echo $req['abstract'];?>
-   </textarea>
+   <textarea class="form-control" name="abstract"><?php echo $req['abstract'];?></textarea>
  </div></div>
  <div class="form-group" id="editarticlemsg-<?php echo $req['id'];?>"></div>
  </div>
@@ -128,7 +126,7 @@
 $(document).ready(function() {
 $("#loadingissue-<?php echo $req['id'];?>").hide();
   $.ajax({
-    url:'<?php echo base_url()."admin/get_issue";?>',
+    url:'<?php echo base_url()."ucp/manage/get_issue";?>',
     type: "POST",
     data: $('#edit_article-<?php echo $req["id"];?>').serialize(),
     success:function(data) {
@@ -139,7 +137,7 @@ $("#loadingissue-<?php echo $req['id'];?>").hide();
   $('#optionvol-<?php echo $req['id'];?>').on('change',function() {
   $('#loading-issue-<?php echo $req['id'];?>').show();
   $.ajax({
-    url:'<?php echo base_url()."admin/get_issue";?>',
+    url:'<?php echo base_url()."ucp/manage/get_issue";?>',
     type: "POST",
     data: $('#edit_article-<?php echo $req['id'];?>').serialize(),
     success:function(data) {
@@ -155,7 +153,7 @@ $('#loadingarticle-<?php echo $req["id"];?>').hide();
 $("#del-article-<?php echo $req['id'];?>").click(function(){
   if (confirm("Do you want to delete?")){
     $.ajax({
-      url:'<?php echo base_url()."admin/delete_item";?>',
+      url:'<?php echo base_url()."ucp/manage/delete_item";?>',
       type: "POST",
       data: $('#del_article-<?php echo $req["id"];?>').serialize(),
       success:function(data) {
@@ -174,7 +172,7 @@ window.location.href = "<?php echo $_SERVER['PHP_SELF'];?>";
 $("#save-article-edit-<?php echo $req['id'];?>").click(function() {
 $("#loadingarticle-<?php echo $req['id'];?>").show();
 $.ajax({
-  url:'<?php echo base_url()."admin/update_article";?>',
+  url:'<?php echo base_url()."ucp/manage/update_article";?>',
   type: "POST",
   data: $("#edit_article-<?php echo $req['id'];?>").serialize(),
   success:function(data) {
@@ -226,20 +224,31 @@ endif;?>
 
       <div class="col-md-4 col-xs-6">
     <div class="form-group">
-    <label for="volume">Volume</label>
+    <label for="volume">Archive</label>
+    <div class="input-group">
+      <span class="input-group-addon">
+      <i class="fa fa-user"></i>
+      </span>
+      <select class="form-control" name="archive" id="archive-select">
+        <option>-Select Archive</option>
+        <?php foreach ($archive as $arc ) {
+       ?> <option value="<?php echo $arc['archive'];?>"><?php echo $arc['archive'];?></option>
+     <?php }?>
+             </select>
+    </div></div></div>
+
+      <div class="col-md-4 col-xs-6">
+    <div class="form-group">
+    <label for="volume">Volume <i class="fa fa-gear fa-spin" id="loading-vol"></i></label>
     <div class="input-group">
       <span class="input-group-addon">
       <i class="fa fa-user"></i>
       </span>
       <select class="form-control" name="volume" id="volume-select">
-        <option>-Select Volume</option>
-        <?php foreach ($volume as $vol ) {
-       ?> <option value="<?php echo $vol['volume'];?>"><?php echo $vol['volume'];?></option>
-     <?php }?>
              </select>
     </div></div></div>
 
-          <div class="col-md-8 col-xs-6">
+          <div class="col-md-4 col-xs-6">
         <div class="form-group">
         <label for="issue">Issue <i class="fa fa-gear fa-spin" id="loading-issue"></i></label>
         <div class="input-group">
@@ -247,9 +256,9 @@ endif;?>
           <i class="fa fa-user"></i>
           </span>
           <select class="form-control" name="issue" id="getissue">
-
           </select>
         </div></div></div>
+
 <input type="hidden" name="document" value="" id="doc">
  <input type="hidden" name="date" value="<?php echo date('d-M-Y'); ?>">
         <div class="col-md-12 col-xs-12">
@@ -266,7 +275,7 @@ endif;?>
  <form id="upload">
  <div class="col-md-12 col-xs-6">
  <div class="form-group">
- <label for="file">Upload Article <small style="color:red">(.doc, .docx)</small></label>
+ <label for="file">Upload Article <small style="color:red">(.pdf)</small></label>
  <br><b id="loading-file"><i class="fa fa-spinner fa-spin"></i> Uploading file, please wait.</b>
  <b id="success"></b>
  <div class="input-group">
@@ -307,14 +316,29 @@ $(document).ready(function() {
 $('#loading-issue').hide();
 $('#loading-file').hide();
 $('#loading').hide();
+$('#loading-vol').hide();
 $('#submit').attr('disabled','disabled');
 //$('#success').hide();
+
+//get Issue list from db
+$('#archive-select').on('change',function() {
+$('#loading-vol').show();
+$.ajax({
+  url:'<?php echo base_url()."ucp/manage/get_volume";?>',
+  type: "POST",
+  data: $('#add_article').serialize(),
+  success:function(data) {
+$('#loading-vol').hide();
+$('#volume-select').html(data);
+  }
+});
+});
 
 //get Issue list from db
 $('#volume-select').on('change',function() {
 $('#loading-issue').show();
 $.ajax({
-  url:'<?php echo base_url()."admin/get_issue";?>',
+  url:'<?php echo base_url()."ucp/manage/get_issue";?>',
   type: "POST",
   data: $('#add_article').serialize(),
   success:function(data) {
@@ -334,7 +358,7 @@ $('#upload').submit(function(e){
 $('#loading-file').show();
             e.preventDefault();
                  $.ajax({
-                     url:'<?php echo base_url();?>admin/do_upload',
+                     url:'<?php echo base_url();?>ucp/manage/do_upload',
                      type:"post",
                      data:new FormData(this),
                      processData:false,
@@ -352,7 +376,7 @@ $('#submit').removeAttr('disabled');
 $('#submit').on('click',function() {
 $('#loading').show();
 $.ajax({
-  url:'<?php echo base_url()."admin/publish_article";?>',
+  url:'<?php echo base_url()."ucp/manage/publish_article";?>',
   type: "POST",
   data: $('#add_article').serialize(),
   success:function(data) {

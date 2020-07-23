@@ -33,7 +33,7 @@
  <?php  foreach($issue as $res): ?>
 <?php if($res['archive'] == $req['archive']): ?>
   <li><a style="padding-right:4px;padding-left:4px;margin: 5px" class="w3-bar-item w3-btn w3-hover-theme w3-large"
-    href="<?php echo base_url();?>aksu/archive/openarchive/<?php echo $res['archive'].'-'.str_replace(' ','_',$res['volume']).'-'.str_replace(' ','_',$res['issue']);?>">
+    href="<?php echo base_url();?>archive/openarchive/<?php echo str_replace(' ','',$res['archive']).'-'.str_replace(' ','_',$res['volume']).'-'.str_replace(' ','_',$res['issue']);?>">
          <i class="fa fa-book"></i><?php echo $res['archive'].'&nbsp;'.$res['volume'].'&nbsp;&nbsp;'.$res['issue'];?></a></li>
        <?php endif;?>
 <?php endforeach;?>

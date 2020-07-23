@@ -108,7 +108,7 @@ $('#loadingvol-<?php echo $res["id"];?>').hide();
   $('#save-vol-edit-<?php echo $res["id"];?>').click(function() {
   $('#loadingvol-<?php echo $res["id"];?>').show();
   $.ajax({
-    url:'<?php echo base_url()."admin/update_volume";?>',
+    url:'<?php echo base_url()."ucp/manage/update_volume";?>',
     type: "POST",
     data: $('#edit_vol-<?php echo $res["id"];?>').serialize(),
     success:function(data) {
@@ -128,7 +128,7 @@ $('#loadingvol-<?php echo $res["id"];?>').hide();
   $("#del-vol-<?php echo $res['id'];?>").click(function(){
     if (confirm("Do you want to delete")){
       $.ajax({
-        url:'<?php echo base_url()."admin/delete_item";?>',
+        url:'<?php echo base_url()."ucp/manage/delete_item";?>',
         type: "POST",
         data: $('#del_volume-<?php echo $res["id"];?>').serialize(),
         success:function(data) {
@@ -250,7 +250,7 @@ $('#loadingissue-<?php echo $req["id"];?>').hide();
   $("#del-issue-<?php echo $req['id'];?>").click(function(){
     if (confirm("Do you want to delete")){
       $.ajax({
-        url:'<?php echo base_url()."admin/delete_item";?>',
+        url:'<?php echo base_url()."ucp/manage/delete_item";?>',
         type: "POST",
         data: $('#del_issues-<?php echo $req["id"];?>').serialize(),
         success:function(data) {
@@ -269,7 +269,7 @@ $('#loadingissue-<?php echo $req["id"];?>').hide();
   $("#save-issue-edit-<?php echo $req['id'];?>").click(function() {
   $("#loadingissue-<?php echo $req['id'];?>").show();
   $.ajax({
-    url:'<?php echo base_url()."admin/update_issue";?>',
+    url:'<?php echo base_url()."ucp/manage/update_issue";?>',
     type: "POST",
     data: $("#edit_issue-<?php echo $req['id'];?>").serialize(),
     success:function(data) {
@@ -364,7 +364,7 @@ $('#loadingarch-<?php echo $ress["id"];?>').hide();
  $('#save-arch-edit-<?php echo $ress["id"];?>').click(function() {
  $('#loadingarch-<?php echo $ress["id"];?>').show();
  $.ajax({
-   url:'<?php echo base_url()."admin/update_archive";?>',
+   url:'<?php echo base_url()."ucp/manage/update_archive";?>',
    type: "POST",
    data: $('#edit_arch-<?php echo $ress["id"];?>').serialize(),
    success:function(data) {
@@ -384,7 +384,7 @@ $('#loadingarch-<?php echo $ress["id"];?>').hide();
  $("#del-arch-<?php echo $ress['id'];?>").click(function(){
    if (confirm("Do you want to delete")){
      $.ajax({
-       url:'<?php echo base_url()."admin/delete_item";?>',
+       url:'<?php echo base_url()."ucp/manage/delete_item";?>',
        type: "POST",
        data: $('#del_archive-<?php echo $ress["id"];?>').serialize(),
        success:function(data) {
@@ -586,7 +586,7 @@ $('#loading-archive').hide();
 $('#save-vol').click(function() {
 $('#loading-vol').show();
 $.ajax({
-  url:'<?php echo base_url()."admin/save_volume";?>',
+  url:'<?php echo base_url()."ucp/manage/save_volume";?>',
   type: "POST",
   data: $('#add_vol').serialize(),
   success:function(data) {
@@ -606,7 +606,7 @@ $('#addvolmsg').html(data);
 $('#save-issue').click(function() {
 $('#loading-issue').show();
 $.ajax({
-  url:'<?php echo base_url()."admin/save_issue";?>',
+  url:'<?php echo base_url()."ucp/manage/save_issue";?>',
   type: "POST",
   data: $('#add_issues').serialize(),
   success:function(data) {
@@ -626,7 +626,7 @@ $('#addissuemsg').html(data);
 $('#save-archive').click(function() {
 $('#loading-archive').show();
 $.ajax({
-  url:'<?php echo base_url()."admin/save_archive";?>',
+  url:'<?php echo base_url()."ucp/manage/save_archive";?>',
   type: "POST",
   data: $('#add_archive').serialize(),
   success:function(data) {

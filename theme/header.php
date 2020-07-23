@@ -9,9 +9,18 @@
     <link href="<?php echo base_url();?>theme/aksu/css/global.css" rel="stylesheet">
     <link href="<?php echo base_url();?>theme/aksu/css/index.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>theme/aksu/css/font-awesome.min.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
-    <script src="<?php echo base_url();?>theme/aksu/js/jquery-2.1.1.min.js"></script>
+      <script src="<?php echo base_url();?>theme/aksu/js/jquery-2.1.1.min.js"></script>
     <script src="<?php echo base_url();?>theme/aksu/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>theme/assets/jquery.min.js"></script>
+    <!--  Core Bootstrap Script -->
+    <script src="<?php echo base_url(); ?>theme/assets/js/bootstrap.js"></script>
+    <!--  Flexslider Scripts -->
+         <script src="<?php echo base_url(); ?>theme/assets/js/jquery.flexslider.js"></script>
+     <!--  Scrolling Reveal Script -->
+    <script src="<?php echo base_url(); ?>theme/assets/js/scrollReveal.js"></script>
+    <!--  Scroll Scripts -->
+    <script src="<?php echo base_url(); ?>theme/assets/js/jquery.easing.min.js"></script>
+
   </head>
   <style>
  /* Dropdown Button */
@@ -105,15 +114,15 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <ul class="nav navbar-nav navbar-left">
-            <li><a class="menu_tag menu_active" href="<?php echo base_url()?>aksu/index"><i class="fa fa-home"></i> HOME</a></li>
+            <li><a class="menu_tag menu_active" href="<?php echo base_url()?>index"><i class="fa fa-home"></i> HOME</a></li>
                     <li>
                       <div class="dropdown1 menu_tag">
                         <a class="menu_tag"><i class="fa fa-info"></i> ABOUT US</a>
                         <div class="dropdown-content">
-                          <a class href="<?php echo base_url()?>aksu/who_we_are">Who we are</a>
-                          <a class href="<?php echo base_url()?>aksu/scope">Aims and Scope</a>
-                          <a class href="<?php echo base_url()?>aksu/editorial_board">Our Editorial Board</a>
-                          <a class href="<?php echo base_url()?>aksu/subject_areas">Our Subject Areas</a>
+                          <a class href="<?php echo base_url()?>who_we_are">Who we are</a>
+                          <a class href="<?php echo base_url()?>scope">Aims and Scope</a>
+                          <a class href="<?php echo base_url()?>editorial_board">Our Editorial Board</a>
+                          <a class href="<?php echo base_url()?>subject_areas">Our Subject Areas</a>
                         </div>
                       </div>
                     </li>
@@ -128,14 +137,14 @@
               </div>
             </li>
 
-          <li><a class="menu_tag" href="<?php echo base_url()?>aksu/archives"><i class="fa fa-briefcase"></i> ARCHIVES</a></li>
-          <li><a class="menu_tag" href="<?php echo base_url()?>aksu/editorial_policy"><i class="fa fa-book"></i> EDITORIAL POLICY</a></li>
-          <li><a class="menu_tag" href="<?php echo base_url();?>aksu/contact"><i class="fa fa-globe"></i> CONTACT</a></li>
+          <li><a class="menu_tag" href="<?php echo base_url()?>archives"><i class="fa fa-briefcase"></i> ARCHIVES</a></li>
+          <li><a class="menu_tag" href="<?php echo base_url()?>editorial_policy"><i class="fa fa-book"></i> EDITORIAL POLICY</a></li>
+          <li><a class="menu_tag" href="<?php echo base_url();?>contact"><i class="fa fa-globe"></i> CONTACT</a></li>
 
 
 
-                  <li><a class="menu_tag" href="<?php echo base_url();?>aksu/signup"><i class="fa fa-edit"></i> REGISTER</a></li>
-                  <li><a class="menu_tag" href="<?php echo base_url();?>aksu/user"><i class="fa fa-submit"></i> SUBMISSION OF MANUSCRIPT</a></li>
+                  <li><a class="menu_tag" href="<?php echo base_url();?>signup"><i class="fa fa-edit"></i> REGISTER</a></li>
+                  <li><a class="menu_tag" href="<?php echo base_url();?>submission"><i class="fa fa-submit"></i> SUBMISSION OF MANUSCRIPT</a></li>
               </ul>
 
          </ul>

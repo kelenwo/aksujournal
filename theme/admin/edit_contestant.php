@@ -61,7 +61,7 @@ $('#edit').trigger('click');
 $("#edit").click(function() {
 $('#loading').show();
 $.ajax({
-url: "<?php echo base_url()."admin/get_biodata";?>",
+url: "<?php echo base_url()."ucp/manage/get_biodata";?>",
 type: "POST",
 data: $('#form').serialize(),
 success:function(data){

@@ -65,24 +65,24 @@
         <div class="row row-offcanvas row-offcanvas-left">
           <div class="col-xs-6 col-sm-4 sidebar-offcanvas" role="navigation">
             <ul class="list-group panel">
-                  <li><a class="list-group-item" id="index-tab" href="<?php echo base_url();?>admin">
+                  <li><a class="list-group-item" id="index-tab" href="<?php echo base_url();?>ucp/manage">
                   <i class="fa fa-home" ></i>
                 Dashboard </a></li>
-                <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>admin/archives"><i class="fa fa-folder-open"></i>
+                <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>ucp/manage/archives"><i class="fa fa-folder-open"></i>
               Archives</a></li>
-              <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>admin/articles"><i class="glyphicon glyphicon-list-alt"></i>
+              <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>ucp/manage/articles"><i class="glyphicon glyphicon-list-alt"></i>
             Articles</a></li>
-                <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>admin/team"><i class="fa fa-users"></i>
+                <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>ucp/manage/team"><i class="fa fa-users"></i>
               Editorial Team</a></li>
-                          <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>admin/users"><i class="fa fa-user"></i>
+                          <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>ucp/manage/users"><i class="fa fa-user"></i>
           Manage Users</a></li>
-            <li><a class="list-group-item" id="add-tab" href="<?php echo base_url();?>admin/news"><i class="fa fa-bell">
+            <li><a class="list-group-item" id="add-tab" href="<?php echo base_url();?>ucp/manage/news"><i class="fa fa-bell">
             </i>News</a></li>
-            <li><a class="list-group-item" id="settings-tab" href="<?php echo base_url();?>admin/submssions">
+            <li><a class="list-group-item" id="settings-tab" href="<?php echo base_url();?>ucp/manage/submssions">
               <i class="fa fa-list-alt"></i> Submissions</a></li>
-                <li><a class="list-group-item" id="portal-tab" href="<?php echo base_url();?>admin/portal"><i class="fa fa-money"></i>
+                <li><a class="list-group-item" id="portal-tab" href="<?php echo base_url();?>ucp/manage/portal"><i class="fa fa-money"></i>
                   Payments</a></li>
-                  <li><a class="list-group-item" id="settings-tab" href="<?php echo base_url();?>admin/settings">
+                  <li><a class="list-group-item" id="settings-tab" href="<?php echo base_url();?>ucp/manage/settings">
                     <i class="fa fa-cogs"></i> Settings</a></li>
 
               </ul>

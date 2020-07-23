@@ -67,7 +67,7 @@ $('#loadingarticle-<?php echo $req["id"];?>').hide();
 $("#del-article-<?php echo $req['id'];?>").click(function(){
   if (confirm("Do you want to delete?")){
     $.ajax({
-      url:'<?php echo base_url()."admin/delete_item";?>',
+      url:'<?php echo base_url()."ucp/manage/delete_item";?>',
       type: "POST",
       data: $('#del_article-<?php echo $req["id"];?>').serialize(),
       success:function(data) {
@@ -115,7 +115,7 @@ $('#submit').attr('disabled','disabled');
 $('#volume-select').on('change',function() {
 $('#loading-issue').show();
 $.ajax({
-  url:'<?php echo base_url()."admin/get_issue";?>',
+  url:'<?php echo base_url()."ucp/manage/get_issue";?>',
   type: "POST",
   data: $('#add_article').serialize(),
   success:function(data) {
@@ -135,7 +135,7 @@ $('#upload').submit(function(e){
 $('#loading-file').show();
             e.preventDefault();
                  $.ajax({
-                     url:'<?php echo base_url();?>admin/do_upload',
+                     url:'<?php echo base_url();?>ucp/manage/do_upload',
                      type:"post",
                      data:new FormData(this),
                      processData:false,
@@ -153,7 +153,7 @@ $('#submit').removeAttr('disabled');
 $('#submit').on('click',function() {
 $('#loading').show();
 $.ajax({
-  url:'<?php echo base_url()."admin/publish_article";?>',
+  url:'<?php echo base_url()."ucp/manage/publish_article";?>',
   type: "POST",
   data: $('#add_article').serialize(),
   success:function(data) {

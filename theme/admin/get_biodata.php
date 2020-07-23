@@ -110,7 +110,7 @@
           //$('#loading').show();
                     e.preventDefault();
                          $.ajax({
-                             url:'<?php echo base_url();?>admin/do_upload',
+                             url:'<?php echo base_url();?>ucp/manage/do_upload',
                              type:"post",
                              data:new FormData(this),
                              processData:false,

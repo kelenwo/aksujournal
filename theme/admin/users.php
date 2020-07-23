@@ -76,7 +76,7 @@ $('#loading').hide();
 $('#save').click(function() {
 $('#loading').show();
 $.ajax({
-  url:'<?php echo base_url()."admin/save_settings";?>',
+  url:'<?php echo base_url()."ucp/manage/save_settings";?>',
   type: "POST",
   data: $('#startstop').serialize(),
   success:function(data) {

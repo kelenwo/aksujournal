@@ -1,4 +1,11 @@
 <?php
+require 'vendor\autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+use PhpOffice\PhpWord\IOFactory;
+use PhpOffice\PhpWord\Settings;
+
    class Aksu extends CI_Controller {
 
 public function index() {
@@ -12,14 +19,8 @@ $data['news'] = $this->user_model->get_news();
     {
 
  $this->load->helper(array('form', 'url'));
-
-
 $this->load->library('form_validation');
-
 $this->form_validation->set_rules('name', 'Name', 'callback_name_check');
-
-
-
 $this->form_validation->set_rules('phone', 'Phone No', 'required');
 $this->form_validation->set_rules('email', 'E-mail',  'required|is_unique[users.email]');
 
@@ -59,22 +60,36 @@ $this->load->view('footer');
     {
 
 $links = str_replace('_',' ',explode('-',$link));
-var_dump($links);
-$data['issue'] = $this->user_model->get_issue_url($links);
+$data['archive'] = $links[0].'&nbsp;'.$links[1].'&nbsp;'.$links[2];
+$data['article'] = $this->user_model->get_issue_link($links[0],$links[1],$links[2]);
 $this->load->view('header');
 $this->parser->parse('openarchive',$data);
 $this->load->view('footer');
     }
+
+    public function viewarticle($openarchive,$link)
+    {
+
+  $links = str_replace('_',' ',explode('-',$link));
+
+  $res = $this->user_model->get_article_link($links[0],$links[1],$links[2]);
+  $data = get_object_vars($res);
+  $this->load->view('header');
+  $this->parser->parse('viewarticle',$data);
+  $this->load->view('footer');
+    }
+
     public function editorial_policy()
     {
 $this->load->view('header');
 $this->load->view('editorial_policy');
 $this->load->view('footer');
     }
-    public function user()
+    public function submission()
     {
+$data['hello'] = array();
 $this->load->view('header');
-$this->load->view('user');
+$this->parser->parse('submission',$data);
 $this->load->view('footer');
     }
     public function who_we_are()
@@ -115,7 +130,7 @@ $this->load->view('footer');
     $config['allowed_types']        = 'doc|docx';
     $config['max_size']             = 10000;
     $config['file_name']          =  $this->input->post("title").'.docx';
-    $config['upload_path']          = './uploads/articles/publications/';
+    $config['upload_path']          = './uploads/articles/submission/';
     $this->upload->initialize($config);
           if($this->upload->do_upload("document")){
     $document = $this->upload->data('file_name');
@@ -129,7 +144,7 @@ $this->load->view('footer');
             echo '
             <i class="fa fa-info-circle" style="color:red;">'.$msg.'</i>';
       }
-    } elseif($this->input->post('type') == 'image') {
+    } elseif($this->input->post('type') == 'verify') {
       $config['allowed_types']        = 'jpg|jpeg|png';
       $config['max_size']             = 10000;
       $config['file_name']          =  $this->input->post("title").'-verify.jpeg';
@@ -140,7 +155,7 @@ $this->load->view('footer');
       echo '
       <b><i class="fa fa-check-square-o" style="color:green; font-size:14px;"> Image Uploaded successfully</i></b>
       <script>
-      $("#doc").val("'.$image.'");
+      $("#img").val("'.$image.'");
       </script>';
               } else {
                 $msg = $this->upload->display_errors();
@@ -149,34 +164,39 @@ $this->load->view('footer');
           }
     }
     }
-    public function viewpdf($filename) {
-      //Set header to show as PDF
-header("Content-Type: application/pdf");
-header("Content-Disposition: inline; filename=" . $data["name"]);
-
+    public function viewpdf($archives,$articles,$publications,$file) {
 //Create a temporary file for Word
-$temp = tmpfile();
-fwrite($temp, $data["data"]); //Write the data in the file
-$uri = stream_get_meta_data($temp)["uri"]; //Get the location of the temp file
+$data = 'C:\wamp64\www\aksu\uploads\20089980GA.pdf';
+require 'vendor\autoload.php';
 
-//Convert the docx file in to an PhpWord Object
-$doc = PhpOffice\PhpWord\IOFactory::load($uri);
+$pdf = new \Mpdf\Mpdf();
 
-//Set the PDF Engine Renderer Path. Many engines are supported (TCPDF, DOMPDF, ...).
-\PhpOffice\PhpWord\Settings::setPdfRendererPath("path/to/tcpdf");
-\PhpOffice\PhpWord\Settings::setPdfRendererName('TCPDF');
+//$pdf->SetImportUse();
+$pagecount = $pdf->SetSourceFile($data);
+    for ($i=1; $i<=$pagecount; $i++) {
+        $import_page = $pdf->ImportPage($i);
+        $pdf->UseTemplate($import_page);
 
-//Create a writer, which converts the PhpWord Object into an PDF
-$xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($doc, 'PDF');
+        if ($i < $pagecount)
+            $pdf->AddPage();
+    }
+$d = $pdf->Output();
+echo $d;
+    }
 
-//Create again an temp file for the new generated PDF.
-$pdf_temp = tmpfile();
-$pdf_uri = stream_get_meta_data($pdf_temp)["uri"];
+    public function viewpdfs($archives,$articles,$publications,$abstract,$file) {
+//Create a temporary file for Word
+$data = 'C:\wamp64\www\aksu\uploads\20089980GA.pdf';
+require 'vendor\autoload.php';
 
-//Save the PDF to the path
-$xmlWriter->save($pdf_uri);
+$pdf = new \Mpdf\Mpdf();
 
-//Now print the file from the temp path.
-echo file_get_contents($pdf_uri);
+//$pdf->SetImportUse();
+$pagecount = $pdf->SetSourceFile($data);
+$import_page = $pdf->ImportPage(1);
+$pdf->UseTemplate($import_page);
+
+echo $pdf->Output();
+
     }
 }

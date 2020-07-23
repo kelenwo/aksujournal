@@ -105,7 +105,7 @@ $('#loadingnews-<?php echo $req["id"];?>').hide();
 $("#del-news-<?php echo $req['id'];?>").click(function(){
   if (confirm("Do you want to delete?")){
     $.ajax({
-      url:'<?php echo base_url()."admin/delete_item";?>',
+      url:'<?php echo base_url()."ucp/manage/delete_item";?>',
       type: "POST",
       data: $('#del_news-<?php echo $req["id"];?>').serialize(),
       success:function(data) {
@@ -124,7 +124,7 @@ window.location.href = "<?php echo $_SERVER['PHP_SELF'];?>";
 $("#save-news-edit-<?php echo $req['id'];?>").click(function() {
 $("#loadingnews-<?php echo $req['id'];?>").show();
 $.ajax({
-  url:'<?php echo base_url()."admin/update_news";?>',
+  url:'<?php echo base_url()."ucp/manage/update_news";?>',
   type: "POST",
   data: $("#edit_news-<?php echo $req['id'];?>").serialize(),
   success:function(data) {
@@ -207,7 +207,7 @@ $('#loading').hide();
 $('#submit').on('click',function() {
 $('#loading').show();
 $.ajax({
-  url:'<?php echo base_url()."admin/publish_news";?>',
+  url:'<?php echo base_url()."ucp/manage/publish_news";?>',
   type: "POST",
   data: $('#add_news').serialize(),
   success:function(data) {
