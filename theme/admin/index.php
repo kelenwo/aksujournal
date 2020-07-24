@@ -27,6 +27,6 @@
         </div>
 <script>
 $(document).ready(function(){
-$('#load').load('<?php echo base_url();?>ucp/manage/display');
+$('#load').load('ucp/manage/display');
 });
 </script>

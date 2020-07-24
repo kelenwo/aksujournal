@@ -54,7 +54,7 @@
 <td><?php echo $req['date']; ?></td>
 <td class="actions">
   <a href="#edit_article_<?php echo $req['id'];?>" data-toggle="modal">Edit&nbsp;<i class="fa fa-pencil"></i></a>|
-  <a href="<?php echo base_url();?>download/articles/publications/<?php echo $req['document'];?>" id="dl-article-<?php echo $req['id'];?>"><b style="color:red;">(.docx)&nbsp;<i class="fa fa-download"></i>
+  <a href="download/articles/publications/<?php echo $req['document'];?>" id="dl-article-<?php echo $req['id'];?>"><b style="color:red;">(.docx)&nbsp;<i class="fa fa-download"></i>
 </a></b>|
   <a id="del-article-<?php echo $req['id'];?>"><b style="color:red;">delete&nbsp;<i class="fa fa-trash-o"></i></a></b>
   <form id="del_article-<?php echo $req['id'];?>">
@@ -358,7 +358,7 @@ $('#upload').submit(function(e){
 $('#loading-file').show();
             e.preventDefault();
                  $.ajax({
-                     url:'<?php echo base_url();?>ucp/manage/do_upload',
+                     url:'ucp/manage/do_upload',
                      type:"post",
                      data:new FormData(this),
                      processData:false,

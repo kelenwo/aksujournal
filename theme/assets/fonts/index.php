@@ -174,7 +174,7 @@
                <div class="col-lg-4 col-md-4 col-sm-6 m-b15">
                 <div class="spot">
                   <div class="overlay">
-                  <img src="<?php echo base_url();?>theme/assets/img/faculty/dean.jpg">
+                  <img src="theme/assets/img/faculty/dean.jpg">
                   <div class="cap">
                      <h5 class="h6-s">Prof. Aniekan Offiong</h5>
                      <h5 class="white">Dean of Faculty</h5>
@@ -185,7 +185,7 @@
                <div class="col-lg-4 col-md-4 col-sm-6 m-b15">
                  <div class="spot">
                    <div class="overlay">
-                   <img src="<?php echo base_url();?>theme/assets/img/faculty/3.jpg">
+                   <img src="theme/assets/img/faculty/3.jpg">
                    <div class="cap">
                       <h5 class="h6-s">Mr. Sammuel Effiok</h5>
                       <h5 class="white">Faculty Officer</hs>
@@ -197,7 +197,7 @@
                <div class="col-lg-4 col-md-4 col-sm-6 m-b15">
                  <div class="spot">
                    <div class="overlay">
-                   <img src="<?php echo base_url();?>theme/assets/img/faculty/usanga.jpg">
+                   <img src="theme/assets/img/faculty/usanga.jpg">
                    <div class="cap">
                       <h5 class="h6-s">Precious Usanga</h5>
                       <h5 class="white">Faculty President</h5>
@@ -322,11 +322,11 @@ height:100%;
       //add image links below
 
       var images= [];
-      images[0]= '<?php echo base_url();?>theme/assets/img/images(1).jpg';
-      images[1]= '<?php echo base_url();?>theme/assets/img/contact.jpg';
-      images[2]= '<?php echo base_url();?>theme/assets/img/building.jpg';
-      images[3]= '<?php echo base_url();?>theme/assets/img/contact.jpg';
-      images[4]= '<?php echo base_url();?>theme/assets/img/building.jpg';
+      images[0]= 'theme/assets/img/images(1).jpg';
+      images[1]= 'theme/assets/img/contact.jpg';
+      images[2]= 'theme/assets/img/building.jpg';
+      images[3]= 'theme/assets/img/contact.jpg';
+      images[4]= 'theme/assets/img/building.jpg';
 
       //add caption text
 

@@ -9,9 +9,13 @@ use PhpOffice\PhpWord\Settings;
 class Manage extends CI_Controller {
   public function __construct()
   {
-    parent::__construct();
-//$this->db->db_select('settings');
-  }
+          parent::__construct();
+if(empty($this->session->email)) {
+  header('Location:'. base_url().'ucp/login');
+} elseif($this->session->position !=='administrator') {
+    header('Location:'. base_url());
+}
+}
         public function index()
         {
 
@@ -49,6 +53,7 @@ $this->parser->parse('admin/team',$data);
 }
 
 public function users() {
+  $data['user'] = $this->user_model->get_user();
 $data['title'] = "Admin Panel - Users";
 $this->parser->parse('admin/head',$data);
 $this->parser->parse('admin/users',$data);
@@ -102,6 +107,14 @@ echo 'saved';
 echo 'fail';}
 }
 
+public function update_user() {
+$issue = $this->user_model->update_user();
+if($issue==true) {
+echo 'saved';
+} else {
+echo 'fail';}
+}
+
 public function save_archive() {
 $issue = $this->user_model->save_archive();
 if($issue==true) {
@@ -141,6 +154,7 @@ echo 'saved';
 echo 'fail';}
 }
 
+
 public function update_volume() {
 $volume = $this->user_model->update_volume();
 if($volume==true) {
@@ -166,32 +180,7 @@ echo 'true';
 echo $article;}
 }
 
-public function submit() {
-$article = $this->user_model->submit();
-$data = $this->input->post();
-if($article==true) {
-  $config['protocol'] = "sendmail";
-  $config['mailpath'] = '/usr/sbin/sendmail';
-$config['charset'] = 'iso-8859-1';
-$config['wordwrap'] = TRUE;
 
-$this->email->initialize($config);
-  $this->email->from($data['email'],$data['author']);
-  $this->email->to('kelenwo68@gmail.com');
-  $this->email->subject('AKSUJAEERD-'.mb_strtoupper($data['title']));
-  $this->email->message(mb_strtoupper($data['title']).'&nbsp; By:'.mb_strtoupper($data['author']));
-  $this->email->attach('./uploads/articles/submission/'.$data['document']);
-  $this->email->attach('./uploads/articles/submission/verification/'.$data['verify']);
-  $send = $this->email->send();
-if($send) {
-echo 'true';
-} else {
-  show_error($this->email->print_debugger());
-     return false;
-}
-} else {
-echo $article;}
-}
 
 public function update_article() {
 $article = $this->user_model->update_article();
@@ -201,19 +190,7 @@ echo 'true';
 echo $article;}
 }
 //
-public function get_contestant() {
-//select student bio from db based on logged in registration number
-/*$res = $this->admin_model->get_student_info();
-if($res==false) {
-  echo 'false';
-} else{
-$data = get_object_vars($res);
-$data['title'] = "Eportals - Update Biodata";
-$data['loading'] = '<img heigth="15" width="15" src="'.base_url().'theme/assets/img/loading.gif" />';
-*/
-  $this->parser->parse('admin/get_biodata');
 
-}
   public function do_upload(){
 //upload contestant passport
 if($this->input->post('type') == 'document') {
@@ -255,5 +232,4 @@ $("#doc").val("'.$document.'");
     		}
 }
 }
-
 }

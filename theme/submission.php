@@ -126,7 +126,7 @@ $('#upload').submit(function(e){
 $('#loading-file').show();
             e.preventDefault();
                  $.ajax({
-                     url:'<?php echo base_url();?>aksu/do_upload',
+                     url:'aksu/do_upload',
                      type:"post",
                      data:new FormData(this),
                      processData:false,
@@ -144,7 +144,7 @@ $('#upload2').submit(function(e){
 $('#loading-verify').show();
             e.preventDefault();
                  $.ajax({
-                     url:'<?php echo base_url();?>aksu/do_upload',
+                     url:'aksu/do_upload',
                      type:"post",
                      data:new FormData(this),
                      processData:false,
@@ -162,7 +162,7 @@ $('#submit').removeAttr('disabled');
 $('#submit').on('click',function() {
 $('#loading').show();
 $.ajax({
-  url:'<?php echo base_url()."ucp/manage/submit";?>',
+  url:'<?php echo base_url()."aksu/submit";?>',
   type: "POST",
   data: $('#add_article').serialize(),
   success:function(data) {

@@ -3,33 +3,34 @@ Class User_model Extends CI_model {
 
 
   public function login() {
-$this->db->select('*');
-$this->db->where('reg_number',$this->input->post('reg_number'));
-$query = $this->db->get('voters');
+$this->db->where('email',$this->input->post('email'));
+$query = $this->db->get('users');
 if($query->num_rows() > 0) {
 /* If registration number exists,verify the access code */
-$res = $query->row();
-$passcheck = $this->input->post('code');
-
-//if the voters pin is correct, retrieve the student data or return false
-if($passcheck == $res->code) {
-  return $query->row();
-} else {
-  return false;
-} }
-elseif($query->num_rows() < 1) {
+return $query->row();
+}
+else {
 //Return false if user doesnt exist
   return false;
 }
 }
 
-    public function register() {
-$data = $this->input->post();
+    public function save_user() {
+$data = array(
+  'author' => $this->input->post('author'),
+  'email' => $this->input->post('email'),
+  'password' => password_hash($this->input->post('password'),PASSWORD_DEFAULT),
+  'institution' => $this->input->post('institution'),
+  'country' => $this->input->post('country'),
+  'date' => $this->input->post('date'),
+  'position' => $this->input->post('position'),
+  'phone' => $this->input->post('phone'),
+);
 $query = $this->db->insert('users',$data);
 if($query) {
   return true;
 } else {
-  return false;
+  return mysqli_error();
 }
     }
 
@@ -43,9 +44,13 @@ if($query) {
 }
 
 }
-public function get_id() {
+public function get_user() {
   $query = $this->db->get('users');
-  return $query->num_rows();
+  if($query->num_rows() < 0) {
+    return false;
+  } else {
+      return $query->result_array();
+  }
 }
 
 public function get_biodata() {

@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" href="<?php echo base_url();?>theme/news_scroll.css" type="text/css">
+    <link rel="stylesheet" href="theme/news_scroll.css" type="text/css">
 </head>
  <style style="text/css">
         .marquee {
@@ -135,7 +135,7 @@
                             <div class="news_scroll-title">
                                 News and Updates<br>
                             </div>
-<iframe name="NewsIFrame" src="<?php echo base_url();?>theme/news_scroll.php" frameborder="0" scrolling="no"></iframe>
+<iframe name="NewsIFrame" src="theme/news_scroll.php" frameborder="0" scrolling="no"></iframe>
                         </div>
                     </div>
                     <!-- END SCROLLING NEWS WINDOW -->

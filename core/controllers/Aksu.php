@@ -199,4 +199,39 @@ $pdf->UseTemplate($import_page);
 echo $pdf->Output();
 
     }
+    public function submit() {
+    $article = $this->user_model->submit();
+    $data = $this->input->post();
+    if($article==true) {
+      $config['protocol'] = "sendmail";
+      $config['mailpath'] = '/usr/sbin/sendmail';
+    $config['charset'] = 'iso-8859-1';
+    $config['wordwrap'] = TRUE;
+
+    $this->email->initialize($config);
+      $this->email->from($data['email'],$data['author']);
+      $this->email->to('kelenwo68@gmail.com');
+      $this->email->subject('AKSUJAEERD-'.mb_strtoupper($data['title']));
+      $this->email->message(mb_strtoupper($data['title']).'&nbsp; By:'.mb_strtoupper($data['author']));
+      $this->email->attach('./uploads/articles/submission/'.$data['document']);
+      $this->email->attach('./uploads/articles/submission/verification/'.$data['verify']);
+      $send = $this->email->send();
+    if($send) {
+    echo 'true';
+    } else {
+      show_error($this->email->print_debugger());
+         return false;
+    }
+    } else {
+    echo $article;}
+    }
+
+    public function save_user() {
+    $volume = $this->user_model->save_user();
+    if($volume==true) {
+    echo 'saved';
+    } else {
+    echo 'fail';}
+    }
+
 }

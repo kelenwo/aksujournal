@@ -8,7 +8,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                     <a href="<?php echo base_url(); ?>panel/post/newpost" id="newpost" class="btn btn-primary btn-block">NEW POST + </a>
+                                     <a href="panel/post/newpost" id="newpost" class="btn btn-primary btn-block">NEW POST + </a>
                                     </div>
                                 </div>
                   <div class="row">

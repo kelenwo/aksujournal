@@ -4,31 +4,31 @@
     <meta charset="utf-8">
     <title> {title}</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="shortcut icon" href="<?php echo base_url(); ?>/favicon_16.ico"/>
-    <link rel="bookmark" href="<?php echo base_url(); ?>/favicon_16.ico"/>
+    <link rel="shortcut icon" href="/favicon_16.ico"/>
+    <link rel="bookmark" href="/favicon_16.ico"/>
     <!-- site css -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>theme/admin/assets/css/site.min.css">
-        <link href="<?php echo base_url(); ?>style/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="theme/admin/assets/css/site.min.css">
+        <link href="style/style.css" rel="stylesheet" />
 
   <!-- Google	Fonts -->
-    <link href="<?php echo base_url(); ?>/theme/assets/css/fonts.css" rel="stylesheet" />
+    <link href="/theme/assets/css/fonts.css" rel="stylesheet" />
 	    <!--  Jquery Core Script -->
-    <script src="<?php echo base_url(); ?>theme/assets/jquery.min.js"></script>
+    <script src="theme/assets/jquery.min.js"></script>
     <!--  Core Bootstrap Script -->
-    <script src="<?php echo base_url(); ?>theme/assets/js/bootstrap.js"></script>
+    <script src="theme/assets/js/bootstrap.js"></script>
     <!--  Flexslider Scripts -->
-         <script src="<?php echo base_url(); ?>theme/assets/js/jquery.flexslider.js"></script>
+         <script src="theme/assets/js/jquery.flexslider.js"></script>
      <!--  Scrolling Reveal Script -->
-    <script src="<?php echo base_url(); ?>theme/assets/js/scrollReveal.js"></script>
+    <script src="theme/assets/js/scrollReveal.js"></script>
     <!--  Scroll Scripts -->
-    <script src="<?php echo base_url(); ?>theme/assets/js/jquery.easing.min.js"></script>
+    <script src="theme/assets/js/jquery.easing.min.js"></script>
     <!--  Custom Scripts -->
-         <script src="<?php echo base_url(); ?>theme/assets/js/custom.js"></script>
+         <script src="theme/assets/js/custom.js"></script>
     <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!-- [if lt IE 9] -->
      <!--[endif] -->
-    <script type="text/javascript" src="<?php echo base_url(); ?>/style/dist/js/site.min.js"></script>
+    <script type="text/javascript" src="/style/dist/js/site.min.js"></script>
   </head>
   <body>
     <?php //if(!isset($this->session->user_name)) {
@@ -65,24 +65,24 @@
         <div class="row row-offcanvas row-offcanvas-left">
           <div class="col-xs-6 col-sm-4 sidebar-offcanvas" role="navigation">
             <ul class="list-group panel">
-                  <li><a class="list-group-item" id="index-tab" href="<?php echo base_url();?>ucp/manage">
+                  <li><a class="list-group-item" id="index-tab" href="ucp/manage">
                   <i class="fa fa-home" ></i>
                 Dashboard </a></li>
-                <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>ucp/manage/archives"><i class="fa fa-folder-open"></i>
+                <li><a class="list-group-item" id="courses-tab" href="ucp/manage/archives"><i class="fa fa-folder-open"></i>
               Archives</a></li>
-              <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>ucp/manage/articles"><i class="glyphicon glyphicon-list-alt"></i>
+              <li><a class="list-group-item" id="courses-tab" href="ucp/manage/articles"><i class="glyphicon glyphicon-list-alt"></i>
             Articles</a></li>
-                <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>ucp/manage/team"><i class="fa fa-users"></i>
+                <li><a class="list-group-item" id="courses-tab" href="ucp/manage/team"><i class="fa fa-users"></i>
               Editorial Team</a></li>
-                          <li><a class="list-group-item" id="courses-tab" href="<?php echo base_url();?>ucp/manage/users"><i class="fa fa-user"></i>
+                          <li><a class="list-group-item" id="courses-tab" href="ucp/manage/users"><i class="fa fa-user"></i>
           Manage Users</a></li>
-            <li><a class="list-group-item" id="add-tab" href="<?php echo base_url();?>ucp/manage/news"><i class="fa fa-bell">
+            <li><a class="list-group-item" id="add-tab" href="ucp/manage/news"><i class="fa fa-bell">
             </i>News</a></li>
-            <li><a class="list-group-item" id="settings-tab" href="<?php echo base_url();?>ucp/manage/submssions">
+            <li><a class="list-group-item" id="settings-tab" href="ucp/manage/submssions">
               <i class="fa fa-list-alt"></i> Submissions</a></li>
-                <li><a class="list-group-item" id="portal-tab" href="<?php echo base_url();?>ucp/manage/portal"><i class="fa fa-money"></i>
+                <li><a class="list-group-item" id="portal-tab" href="ucp/manage/portal"><i class="fa fa-money"></i>
                   Payments</a></li>
-                  <li><a class="list-group-item" id="settings-tab" href="<?php echo base_url();?>ucp/manage/settings">
+                  <li><a class="list-group-item" id="settings-tab" href="ucp/manage/settings">
                     <i class="fa fa-cogs"></i> Settings</a></li>
 
               </ul>
