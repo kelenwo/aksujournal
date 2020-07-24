@@ -18,23 +18,17 @@
 
 				<div class="col-xs-12 col-sm-9" style="color: #000; font-size: 120%">
 	 				<div class="center_home_2_inner_1 clearfix">
-	   					<div class="center_home_2_inner_1_inner clearfix text-center">
-       						<h2 class="" style="text-transform:capitalize;">{archive}</h2>
-	   					</div><hr>
 	   					<div class="center_home_2_inner_1_inner_1 clearfix">
 	    					<div class="col-sm-12 col-md-12">
-                  <?php foreach($article as $res): ?>
-      		 						<div class="center_home_2_inner_1_inner_1_right clearfix" style="text-transform:uppercase;">
-           							<b><h4><?php echo $res['title'];?></h4>
-           							<p3><?php echo $res['author'];?></p3></b>
-
+		 						<div class="center_home_2_inner_1_inner_1_right clearfix" style="text-transform:uppercase;">
+           							<b><h4>{title}</h4><br>
+           							<p3>Author:&nbsp; {author}</p3></b>
 		   							<p><div>
-										<div class=""><b><i class="fa fa-eye w3-large w3-margin-right"></i>0 views</b></div>
-	<a href="viewarticle/openarchive/<?php echo str_replace(' ','',$res['archive']).'-'.str_replace(' ','_',$res['volume']).'-'.str_replace(' ','_',$res['issue']);?>" rel="nofollow" target="_blank" class="w3-btn w3-border w3-round w3-hover-theme w3-mobile w3-margin-bottom"><i class="fa fa-file-pdf-o"></i> View Abstract</a>
-	<a href="viewpdf/archives/articles/publications/<?php echo $res['document'];?>" rel="nofollow" target="_blank" class="w3-btn w3-border w3-round w3-hover-theme w3-mobile w3-margin-bottom"><i class="fa fa-file-pdf-o"></i> View Full Paper</a>
+												<a href="viewpdf/archives/articles/publications/{document}" rel="nofollow" target="_blank" class="w3-btn w3-border w3-round w3-hover-theme w3-mobile w3-margin-bottom"><i class="fa fa-file-pdf-o"></i> View Full Paper</a>
 									</div></p>
+<iframe src="viewpdfs/archives/articles/publications/{document}" width="100%" height="500px">
+</iframe>
 		 						</div>
-              <?php endforeach;?>
 							</div>
 	   					</div>
 

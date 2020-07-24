@@ -112,7 +112,7 @@
    <script>
    $(document).ready(function() {
      $.ajax({
-       url:'<?php echo base_url()."admin/count_articles";?>',
+       url:'<?php echo base_url()."ucp/manage/count_articles";?>',
        type: "POST",
        data: $('#articles-<?php echo $req["id"];?>').serialize(),
        success:function(data) {
@@ -123,7 +123,7 @@ $('#article-count-<?php echo $req["id"];?>').html(data);
      $("#del-issue-<?php echo $req['id'];?>").click(function(){
        if (confirm("Deleting this issue will delete all articles in it. Do you want to delete?")){
          $.ajax({
-           url:'<?php echo base_url()."admin/delete_item";?>',
+           url:'<?php echo base_url()."ucp/manage/delete_item";?>',
            type: "POST",
            data: $('#del_issues-<?php echo $req["id"];?>').serialize(),
            success:function(data) {
@@ -142,7 +142,7 @@ $('#article-count-<?php echo $req["id"];?>').html(data);
      $("#save-issue-edit-<?php echo $req['id'];?>").click(function() {
      $("#loadingissue-<?php echo $req['id'];?>").show();
      $.ajax({
-       url:'<?php echo base_url()."admin/update_issue";?>',
+       url:'<?php echo base_url()."ucp/manage/update_issue";?>',
        type: "POST",
        data: $("#edit_issue-<?php echo $req['id'];?>").serialize(),
        success:function(data) {
@@ -189,7 +189,7 @@ $('#loading').hide();
 $('#save').click(function() {
 $('#loading').show();
 $.ajax({
-  url:'<?php echo base_url()."admin/save_settings";?>',
+  url:'<?php echo base_url()."ucp/manage/save_settings";?>',
   type: "POST",
   data: $('#startstop').serialize(),
   success:function(data) {

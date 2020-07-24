@@ -1,5 +1,5 @@
 <?php
-require 'vendor\autoload.php';
+require base_url().'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;

@@ -12,24 +12,43 @@
 </head>
 
 <body class="news-scroll" onMouseover="scrollspeed=0" onMouseout="scrollspeed=current" OnLoad="NewsScrollStart();">
+
+
 <!-- START NEWS FEED -->
 <div id="NewsDiv">
-  <?php  foreach($news as $res): ?>
 <div class="scroll-text-if">
 
 <!-- SCROLLER CONTENT STARTS HERE -->
+
+
+
+
+
+
 <span class="scroll-title-if">
-<?php echo $res['title'];?><br>
+Change of Website<br>
 </span>
-<?php echo $res['content'];?>
+
+We wish to announce to authors and the general public that this is our new websites, and authors can find their publications in our Archive.
+
 
 <br><br>
 
+
+
+
+
+
+
+
 <!-- END SCROLLER CONTENT -->
+
 </div>
-<?php endforeach;?>
 </div>
 <!-- END NEWS FEED -->
+
+
+
 
 <!-- YOU DO NOT NEED TO EDIT BELOW THIS LINE -->
 

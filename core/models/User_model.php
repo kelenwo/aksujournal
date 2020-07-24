@@ -3,33 +3,34 @@ Class User_model Extends CI_model {
 
 
   public function login() {
-$this->db->select('*');
-$this->db->where('reg_number',$this->input->post('reg_number'));
-$query = $this->db->get('voters');
+$this->db->where('email',$this->input->post('email'));
+$query = $this->db->get('users');
 if($query->num_rows() > 0) {
 /* If registration number exists,verify the access code */
-$res = $query->row();
-$passcheck = $this->input->post('code');
-
-//if the voters pin is correct, retrieve the student data or return false
-if($passcheck == $res->code) {
-  return $query->row();
-} else {
-  return false;
-} }
-elseif($query->num_rows() < 1) {
+return $query->row();
+}
+else {
 //Return false if user doesnt exist
   return false;
 }
 }
 
-    public function register() {
-$data = $this->input->post();
+    public function save_user() {
+$data = array(
+  'author' => $this->input->post('author'),
+  'email' => $this->input->post('email'),
+  'password' => password_hash($this->input->post('password'),PASSWORD_DEFAULT),
+  'institution' => $this->input->post('institution'),
+  'country' => $this->input->post('country'),
+  'date' => $this->input->post('date'),
+  'position' => $this->input->post('position'),
+  'phone' => $this->input->post('phone'),
+);
 $query = $this->db->insert('users',$data);
 if($query) {
   return true;
 } else {
-  return false;
+  return mysqli_error();
 }
     }
 
@@ -43,9 +44,13 @@ if($query) {
 }
 
 }
-public function get_id() {
+public function get_user() {
   $query = $this->db->get('users');
-  return $query->num_rows();
+  if($query->num_rows() < 0) {
+    return false;
+  } else {
+      return $query->result_array();
+  }
 }
 
 public function get_biodata() {
@@ -73,15 +78,27 @@ if($query->num_rows() < 0) {
 }
 }
 
-public function get_issue_link($links) {
-$this->db->where('archive',$links[0]);
-$this->db->where('volume',$links[1]);
-$this->db->where('issue',$links[2]);
+public function get_issue_link($links0,$links1,$links2) {
+$this->db->where('archive',$links0);
+$this->db->where('volume',$links1);
+$this->db->where('issue',$links2);
 $query =  $this->db->get('articles');
 if($query->num_rows() < 0) {
-  return false;
+  return mysqli_error();
 } else {
     return $query->result_array();
+}
+}
+
+public function get_article_link($links0,$links1,$links2) {
+$this->db->where('archive',$links0);
+$this->db->where('volume',$links1);
+$this->db->where('issue',$links2);
+$query =  $this->db->get('articles');
+if($query->num_rows() < 0) {
+  return mysqli_error();
+} else {
+    return $query->row();
 }
 }
 
@@ -157,6 +174,12 @@ public function get_issues() {
   return $query->result_array();
 }
 
+public function get_volumes() {
+  $this->db->where('archive',$this->input->post('archive'));
+  $query = $this->db->get('volume');
+  return $query->result_array();
+}
+
 public function save_issue() {
   $query = $this->db->insert('issue', $this->input->post());
   if($query) {
@@ -223,7 +246,15 @@ public function publish_article() {
   }
 }
 
-<<<<<<< HEAD
+public function submit() {
+  $query = $this->db->insert('submissions', $this->input->post());
+  if($query) {
+    return true;
+  } else {
+    return mysqli_error();
+  }
+}
+
 public function publish_news() {
   $query = $this->db->insert('news', $this->input->post());
   if($query) {
@@ -233,18 +264,8 @@ public function publish_news() {
   }
 }
 
-=======
->>>>>>> 4f9893b6dcf0b490ececd17cab4b72646dbd0b19
-public function verify_voter() {
-    $this->db->select('reg_number');
-  $this->db->where('reg_number',$this->input->post('reg_number'));
-  $query = $this->db->get('voters');
-  if($query->num_rows() > 0) {
-  return true;
-} else {
-  return false;
-}
-}
+
+
 public function delete_item() {
   $type = $this->input->post('type');
 
@@ -300,58 +321,7 @@ public function delete_item() {
 }
 
 }
-public function startstop() {
-  $query = $this->db->get('settings');
-  if($query->num_rows() < 0) {
-    return false;
-  } else {
-      return $query->row();
-  }
-}
-public function save_settings() {
-//$this->db->select('settings');
-$data = $this->input->post();
-$this->db->where('id','1');
-$query = $this->db->update('settings',$data);
-if($query) {
-return TRUE;
-} else{
-return FALSE;
-}
-}
-public function get_settings() {
-  $query = $this->db->get('settings');
-  return $query->row();
-}
-public function save_vote($val) {
-$this->db->where('id',$val);
-$get = $this->db->get('contestants');
-$res = $get->row();
-$data = array(
-  'voter' => $this->session->reg_number,
-  'vote_for_id' => $val,
-  'vote_for' => $res->name,
-  'position' => $res->position,
-);
-$this->db->where('voter',$this->session->reg_number);
-$req = $this->db->get('votes');
-$this->db->set($data);
-  $query = $this->db->insert('votes');
-  if($query) {
-    return 3;}
-   else {
-    return 4;
-}
-}
-public function check_vote() {
-  $this->db->where('voter',$this->session->reg_number);
-  $query = $this->db->get('votes');
-  if($query->num_rows() < 1) {
-    return false;
-  } else {
-    return true;
-  }
-}
+
 public function count_articles() {
 $this->db->select('*');
 $this->db->where('issue',$this->input->post('issue'));

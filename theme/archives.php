@@ -1,13 +1,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="<?php echo base_url();?>theme/aksu/css/w3.css">
-<link href="<?php echo base_url();?>theme/aksu/css/bootstrap.min.css" rel="stylesheet">
-  <link href="<?php echo base_url();?>theme/aksu/css/global.css" rel="stylesheet">
-  <link href="<?php echo base_url();?>theme/aksu/css/index.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>theme/aksu/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="theme/aksu/css/w3.css">
+<link href="theme/aksu/css/bootstrap.min.css" rel="stylesheet">
+  <link href="theme/aksu/css/global.css" rel="stylesheet">
+  <link href="theme/aksu/css/index.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="theme/aksu/css/font-awesome.min.css"/>
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
-  <script src="<?php echo base_url();?>theme/aksu/js/jquery-2.1.1.min.js"></script>
-  <script src="<?php echo base_url();?>theme/aksu/js/bootstrap.min.js"></script>
+  <script src="theme/aksu/js/jquery-2.1.1.min.js"></script>
+  <script src="theme/aksu/js/bootstrap.min.js"></script>
 
 <section id="center" class="center_home" style="background-color: #def7de;">
   <div class="container">
@@ -33,7 +33,7 @@
  <?php  foreach($issue as $res): ?>
 <?php if($res['archive'] == $req['archive']): ?>
   <li><a style="padding-right:4px;padding-left:4px;margin: 5px" class="w3-bar-item w3-btn w3-hover-theme w3-large"
-    href="<?php echo base_url();?>aksu/archive/openarchive/<?php echo $res['archive'].'-'.str_replace(' ','_',$res['volume']).'-'.str_replace(' ','_',$res['issue']);?>">
+    href="archive/openarchive/<?php echo str_replace(' ','',$res['archive']).'-'.str_replace(' ','_',$res['volume']).'-'.str_replace(' ','_',$res['issue']);?>">
          <i class="fa fa-book"></i><?php echo $res['archive'].'&nbsp;'.$res['volume'].'&nbsp;&nbsp;'.$res['issue'];?></a></li>
        <?php endif;?>
 <?php endforeach;?>

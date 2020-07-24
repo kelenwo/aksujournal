@@ -20,24 +20,25 @@
                   <h1 class="" style="color: #0f2d0f" align="center" >Register</h1> <br>
                   <p1><b>NOTE: All fields must be inputed</p1>
                 </div>
-            
-                  <?php echo validation_errors(); ?>
-                  <?php echo form_open(); ?>
+
+                <form id="register">
                 <div class="form-group">
                   <label for="Name">Name <span class="icon_tag">*</span></label>
-                  <input type="text" class="form-control"  id="name" value="" required="">
+                  <input type="text" name="author" class="form-control"  id="name" value="" required="">
                 </div>
                 <div class="form-group">
                   <label for="Email">Email <span class="icon_tag">*</span></label>
-                  <input type="text" class="form-control" id="email" value="" required="">
+                  <input type="text" name="email" class="form-control" id="email" value="" required="">
                 </div>
                 <div class="form-group">
                   <label for="Phone">Phone Number <span class="icon_tag">*</span></label>
-                  <input type="text" class="form-control" id="phone" value="" required="">
+                  <input type="text" name="phone" class="form-control" id="phone" value="" required="">
+                    <input type="hidden" name="position" value="member">
+                    <input type="hidden" name="date" value="<?php echo date('d-M-Y'); ?>">
                 </div>
                 <div class="form-group">
                   <label for="Country">Country <span class="icon_tag">*</span></label>
-                  <select id="country" class="form-control" id="Country" value="" required="">
+                  <select id="country"name="country" class="form-control" id="Country" value="" required="">
                      <option value=""></option>
                      <option value="Afganistan">Afghanistan</option>
                      <option value="Albania">Albania</option>
@@ -289,14 +290,18 @@
                 </div>
                 <div class="form-group">
                   <label for="Institution">Institution <span class="icon_tag">*</span></label>
-                  <input type="text" class="form-control" id="Institution" value="" required="">
+                  <input type="text" name="institution" class="form-control" id="Institution" value="" required="">
                 </div>
                 <div class="form-group">
                   <label for="Password">Password <span class="icon_tag">*</span></label>
                   <input type="Password" class="form-control" id="Password" value="" required="">
                 </div>
-                <button type="submit" class="btn btn-success btn-block button" name="submit" href="">Register</button>
-             
+                <div class="form-group">
+                  <label for="Password">Confirm Password <span class="icon_tag">*</span> <small style="color:red" id="msgp"></small></label>
+                  <input type="password" name="password" class="form-control" id="confPassword" value="" required="">
+                </div>
+                <button type="button" class="btn btn-success btn-block button" id="submit" href="">Register <i id="loading" class="fa fa-gear fa-spin"></i></button>
+<small style="color:red" id="msgp"></small>
               </div>
             </div>
           </div>
@@ -305,3 +310,37 @@
     </div>
   </div>
 </section>
+
+<script>
+$(document).ready(function() {
+//Hide all loading icons
+$('#loading').hide();
+$('#msgp').hide();
+//Save Archive
+$('#submit').click(function() {
+var val = $('#confPassword').val();
+var vals = $('#Password').val();
+if(val==vals) {
+$('#loading').show();
+$.ajax({
+  url:'<?php echo base_url()."save_user";?>',
+  type: "POST",
+  data: $('#register').serialize(),
+  success:function(data) {
+$('#loading-archive').hide();
+  if(data=="saved") {
+alert('Successfully registered!');
+window.location.href = "";
+  } else {
+$('#msg').html(data);
+  }
+  }
+});
+}
+ else {
+$('#msgp').html('Passwords do not match');
+$('#msgp').show();
+}
+});
+});
+</script>

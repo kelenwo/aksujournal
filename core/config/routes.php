@@ -49,12 +49,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['(:any)'] = 'home/$1/$2/$3/$4';
-$route['admin/'] = 'admin';
-<<<<<<< HEAD
+$route['(:any)'] = 'aksu/$1/$2/$3/$4';
+$route['admin'] = 'ucp/manage';
 $route['default_controller'] = 'aksu';
-=======
-$route['default_controller'] = 'home';
->>>>>>> 4f9893b6dcf0b490ececd17cab4b72646dbd0b19
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

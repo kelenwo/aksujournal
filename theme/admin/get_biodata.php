@@ -66,7 +66,7 @@
          <hr/>
            <div class="box spot">
              <div class="overlay">
-       <label for="passport"><img  id="img" src="<?php echo base_url();?>uploads/{passport}">
+       <label for="passport"><img  id="img" src="uploads/{passport}">
 </label><input id="passport" type="file" name="userfile" style="display:none;">
 </div></div>
 <input type="hidden" name="type" value="edit">
@@ -110,7 +110,7 @@
           //$('#loading').show();
                     e.preventDefault();
                          $.ajax({
-                             url:'<?php echo base_url();?>admin/do_upload',
+                             url:'ucp/manage/do_upload',
                              type:"post",
                              data:new FormData(this),
                              processData:false,

@@ -32,12 +32,12 @@
 <body>
 
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('/style/login/images/bg-01.jpg');">
+		<div class="container-login100" style="background-image: url('style/login/images/bg-01.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
 					Account Login
 				</span>
-				
+
 													 <div class="panel-body">
 															 <?php if(!empty(validation_errors())) { ?><div class="alert alert-danger alert-dismissable">
 											 <button type="button" class="close" data-dismiss="alert"
@@ -47,26 +47,24 @@
 											 Error ! <?php echo validation_errors(); ?>
 											</div> <?php } ?>
 				<div class="login100-form validate-form p-b-33 p-t-5">
-
-					<div class="wrap-input100 validate-input" data-validate = "Enter Reg No">
-						<input class="input100" style="margin-left: 45px;" type="text" name="reg" placeholder="Registration Number">
-						<span class="focus-input100"  data-placeholder="Reg No: &nbsp;"></span>
+<form id="logins">
+					<div class="wrap-input100 validate-input" data-validate = "Enter Email">
+						<input class="input100" style="margin-left: 45px;" type="text" name="email" placeholder="Email Address">
+						<span class="focus-input100"  data-placeholder="Email: &nbsp;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" style="margin-left: 45px;" type="password" name="password" placeholder="Code">
-						<span class="focus-input100" data-placeholder="Code"></span>
+						<input class="input100" style="margin-left: 45px;" type="password" name="password" placeholder="Password">
+						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
 
 					<div class="container-login100-form-btn m-t-32">
-						<button class="btn btn-primary" id="get-code">
-							Get Code <i class="fa fa-gear fa-spin" id="loading"></i>
-						</button> &nbsp;&nbsp; | &nbsp;&nbsp;
-							<button class="login100-form-btn">
-							Login
+
+							<button type="button" class="login100-form-btn" id="login">
+							Login <i class="fa fa-gear fa-spin" id="loading"></i>
 						</button>
 					</div>
-
+</form>
 				</div>
 			</div>
 		</div>
@@ -97,17 +95,20 @@
 	<script>
 	$(document).ready(function(){
 	$('#loading').hide();
-	$("#get-code").click(function() {
+	$("#login").click(function() {
 	$('#loading').show();
 	$.ajax({
-	url: "<?php echo base_url()."ucp/manage/get_biodata";?>",
+	url: "<?php echo base_url()."ucp/login/logins";?>",
 	type: "POST",
-	data: $('#get_student').serialize(),
+	data: $('#logins').serialize(),
 	success:function(data){
 	$('#loading').hide();
-
-	$("#bio-content").html(data);
-
+if(data=='true') {
+	alert('Login Successfully');
+	window.location.href = "<?php echo base_url()."ucp/manage";?>";
+} else {
+	alert(data);
+}
 	}
 	});
 

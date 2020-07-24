@@ -17,7 +17,7 @@
         
           <div class="center_home_2_inner_login clearfix" style="margin-top: 15px;background-color: #c9d8c9;border-radius:5px;">
               <div class="center_home_2_inner_1_inner clearfix">
-<p>Don't have an account with us yet? click <a class="" href="<?php echo base_url()?>aksu/signup">Register</a></p>
+<p>Don't have an account with us yet? click <a class="" href="aksu/signup">Register</a></p>
 
               </div>
             </div>
@@ -57,7 +57,7 @@
                                        </label>
                                     </div>
                                     <div class="form-group">
-                                       <button type="submit" name="signin" class="btn btn-success btn-block button" href="<?php echo base_url()?>aksu/user">Sign in </button>
+                                       <button type="submit" name="signin" class="btn btn-success btn-block button" href="aksu/user">Sign in </button>
                                     </div>
                                  </form>
                               </div>
